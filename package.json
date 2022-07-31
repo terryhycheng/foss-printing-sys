@@ -1,0 +1,13 @@
+{
+  "name": "hku-printing-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fe-start": "cd frontend && npm run start",
+    "be-start": "cd backend && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
