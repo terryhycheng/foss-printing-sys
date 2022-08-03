@@ -1,0 +1,41 @@
+@use "../../style/" as *;
+
+.center {
+  text-align: center;
+}
+
+form {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+a {
+  margin-top: 0.5rem;
+  color: $dark-blue;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0.3;
+}
+
+.textfield {
+  margin-top: 0.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  @include mobile() {
+    text-align: center;
+  }
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  @include mobile() {
+    text-align: center;
+  }
+}

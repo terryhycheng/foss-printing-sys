@@ -1,0 +1,72 @@
+@use "../../style/" as *;
+
+.container {
+  min-height: 100vh;
+  background: url("../../assets/bg-image.jpeg") no-repeat center;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+
+  @include mobile() {
+    gap: 1rem;
+  }
+
+  .copyright {
+    color: white;
+    font-weight: 200;
+    opacity: 1;
+
+    @include mobile() {
+      text-align: center;
+    }
+  }
+}
+
+.box {
+  @extend .rounded;
+  overflow: hidden;
+  position: relative;
+
+  width: clamp(0px, 95%, 1150px);
+  min-height: 55vh;
+  background-color: white;
+}
+
+.logo_box {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  @include mobile() {
+    top: auto;
+    right: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.left {
+  flex: 3;
+  background: url("../../assets/fossbuilding.jpg") no-repeat center;
+  background-size: cover;
+  @include mobile() {
+    display: none;
+  }
+}
+
+.right {
+  flex: 4;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+  padding: 4rem 6rem;
+  gap: 2rem;
+
+  @include mobile() {
+    padding: 2rem;
+    margin-top: 0;
+  }
+}
