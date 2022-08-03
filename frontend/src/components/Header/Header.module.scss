@@ -1,0 +1,6 @@
+@use "../../style/" as *;
+
+.container {
+  @extend .light_shadow;
+  padding: 2rem;
+}

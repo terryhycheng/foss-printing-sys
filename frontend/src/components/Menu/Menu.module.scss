@@ -1,0 +1,43 @@
+@use "../../style/" as *;
+
+.container {
+  background-color: $dark-blue;
+  color: white;
+  padding: 3.5rem 2rem;
+  height: 100%;
+
+  h1 {
+    font-size: 1.6rem;
+    line-height: 110%;
+    font-weight: 600;
+  }
+
+  h4 {
+    opacity: 50%;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  ul {
+    margin-top: 3rem;
+  }
+
+  li {
+    margin: 0.8rem 0;
+    padding: 0.8rem 1rem;
+    display: flex;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: rgba($color: #fff, $alpha: 0.05);
+    // border-radius: 5px;
+    @include ani();
+
+    &:hover {
+      background-color: $light-blue;
+    }
+  }
+}

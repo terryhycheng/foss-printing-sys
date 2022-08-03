@@ -1,15 +1,17 @@
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
 const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
     console.log(data);
     reset();
+    navigate("/");
   };
   return (
     <>

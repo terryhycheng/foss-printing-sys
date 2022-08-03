@@ -1,5 +1,6 @@
+import classNames from "classnames";
 import Layout from "../../layouts/Layout";
-import "./Dashboard.scss";
+import styles from "./Dashboard.module.scss";
 // import { useSelector, useDispatch } from "react-redux";
 // import { decrement, increment } from "../../contexts/slices/counterSlice";
 // import { RootState } from "../../contexts/store";
@@ -10,7 +11,15 @@ function Dashboard() {
 
   return (
     <Layout>
-      <div>Dashboard</div>
+      <div className={classNames(styles.container)}>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+        <div className={classNames(styles.div)}>Dashboard</div>
+      </div>
     </Layout>
   );
 }
