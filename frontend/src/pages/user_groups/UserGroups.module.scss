@@ -1,0 +1,17 @@
+@use "../../style/" as *;
+
+.title_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+}

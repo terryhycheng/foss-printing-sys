@@ -2,5 +2,44 @@
 
 .container {
   @extend .light_shadow;
-  padding: 2rem;
+  background-color: white;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  justify-content: space-between;
+  align-items: center;
+
+  @include mobile() {
+    flex-direction: column;
+  }
+
+  a {
+    color: initial;
+  }
+}
+
+.left_wrapper {
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
+
+  p {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: 400;
+  }
+}
+
+.right_wrapper {
+  align-items: center;
+  gap: 1rem;
+
+  strong {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  @include mobile() {
+    flex-direction: column;
+  }
 }

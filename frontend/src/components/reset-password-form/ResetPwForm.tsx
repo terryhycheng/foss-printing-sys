@@ -12,8 +12,8 @@ const ResetPwForm = () => {
     reset();
   };
   return (
-    <>
-      <div>
+    <div className={classNames(styles.flex, styles.container)}>
+      <div className={classNames(styles.flex, styles.container)}>
         <h2>Reset Password</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -43,7 +43,7 @@ const ResetPwForm = () => {
           Back
         </Link>
       </form>
-    </>
+    </div>
   );
 };
 

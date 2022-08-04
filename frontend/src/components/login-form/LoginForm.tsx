@@ -14,7 +14,7 @@ const LoginForm = () => {
     navigate("/");
   };
   return (
-    <>
+    <div className={classNames(styles.loginForm)}>
       <div>
         <h2>FOSS Printing System</h2>
         <h3>Log in portal</h3>
@@ -47,7 +47,7 @@ const LoginForm = () => {
       <p className={classNames(styles.center)}>
         If you need an account, please contact IT team.
       </p>
-    </>
+    </div>
   );
 };
 

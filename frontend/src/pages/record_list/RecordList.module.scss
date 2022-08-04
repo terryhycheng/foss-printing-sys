@@ -1,0 +1,33 @@
+@use "../../style/" as *;
+
+.title_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+}
+
+.modal_container {
+  @extend .light_shadow, .rounded;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 3rem;
+  padding: 3rem;
+  background-color: white;
+}
+
+.select_box {
+  width: 100%;
+  margin: 1rem 0;
+}

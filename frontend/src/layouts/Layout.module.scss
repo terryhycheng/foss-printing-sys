@@ -10,6 +10,7 @@
 
 .menu_wrapper {
   flex: 1.5;
+
   @include mobile() {
     display: none;
   }
@@ -26,4 +27,5 @@
 
 .children_wrapper {
   overflow: auto;
+  width: 100%;
 }

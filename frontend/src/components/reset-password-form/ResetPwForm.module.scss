@@ -1,5 +1,12 @@
 @use "../../style/" as *;
 
+.container {
+}
+.flex {
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .center {
   text-align: center;
 }

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React from "react";
-import Header from "../components/Header/Header";
-import Menu from "../components/Menu/Menu";
+import Header from "../components/header/Header";
+import Menu from "../components/menu/Menu";
 import styles from "./Layout.module.scss";
 
 type Children = {

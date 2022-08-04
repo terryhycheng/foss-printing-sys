@@ -1,20 +1,86 @@
 @use "../../style/" as *;
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.div_wrapper {
+  display: grid;
   gap: 1rem;
-  padding: 3.5rem 2rem;
+  width: 100%;
+
   @include mobile() {
-    padding: 2rem;
+    flex-direction: column;
   }
 }
 
 .div {
   @extend .light_shadow, .rounded;
   background: #fff;
-  width: clamp(200px, 90%, 1200px);
-  height: 200px;
-  padding: 2rem;
+  padding: 3rem;
+
+  @include mobile() {
+    padding: 1.5rem;
+  }
+}
+
+.top_wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  @include mobile() {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  strong {
+    font-size: 3rem;
+    font-weight: 600;
+
+    @include mobile() {
+      font-size: 2.5rem;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.btm_container {
+  grid-template-columns: 50% 1fr;
+
+  @include mobile() {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btm_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  h2 {
+    margin: 1rem 0;
+  }
+}
+
+.inventory_box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+
+  h2 {
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
+}
+
+.icon_title {
+  display: flex;
+  gap: 0.6rem;
+
+  @include mobile() {
+    justify-content: center;
+  }
 }
