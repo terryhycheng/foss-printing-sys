@@ -1,7 +1,5 @@
 import classNames from "classnames";
 import styles from "./Header.module.scss";
-const logo = require("../../assets/logo.png");
-
 import MenuIcon from "@mui/icons-material/Menu";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -10,6 +8,7 @@ import { Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment";
+const logo = require("../../assets/logo.png");
 
 const Header = () => {
   const [timeValue, setTimeValue] = useState(

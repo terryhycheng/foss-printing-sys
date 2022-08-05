@@ -5,7 +5,7 @@ import styles from "./Inventory.module.scss";
 import LayersIcon from "@mui/icons-material/Layers";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import PrintIcon from "@mui/icons-material/Print";
-import React, { FC } from "react";
+import React, { useState } from "react";
 
 type ItemType = {
   name: String;
@@ -54,13 +54,24 @@ const inkBoxData: ItemType[] = [
   },
 ];
 
-const Item: FC<ItemType> = (item: ItemType) => {
+const Item = (props: { item: ItemType }) => {
   return (
-    <div key={item.code as React.Key} className={classNames(styles.row)}>
-      <p className={styles.title}>{item.name}</p>
-      <p>{item.code}</p>
-      <p className={styles.number}>{`${item.qty}` ? `${item.qty}` : `-`}</p>
-    </div>
+    <>
+      {props.item.qty ? (
+        <div
+          key={props.item.code as React.Key}
+          className={classNames(styles.row)}
+        >
+          <p className={styles.title}>{props.item.name}</p>
+          <p>{props.item.code}</p>
+          <p className={styles.number}>
+            {`${props.item.qty}` ? `${props.item.qty}` : `-`}
+          </p>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
@@ -68,7 +79,9 @@ const Inventory = () => {
   return (
     <Layout>
       <div className={classNames(styles.main_container)}>
-        <h2>Inventory</h2>
+        <div>
+          <h2>Inventory</h2>
+        </div>
         <div className={classNames(styles.inventory_box)}>
           <div className={classNames(styles.box_wrapper)}>
             <div className={classNames(styles.icon_title)}>
@@ -99,7 +112,9 @@ const Inventory = () => {
           </div>
           <hr />
           {maintenanceData.map((item) => (
-            <Item {...item} />
+            <div key={item.code as React.Key}>
+              <Item item={item} />
+            </div>
           ))}
         </div>
         <div className={classNames(styles.box_wrapper)}>
@@ -109,7 +124,9 @@ const Inventory = () => {
           </div>
           <hr />
           {maintenanceData.map((item) => (
-            <Item {...item} />
+            <div key={item.code as React.Key}>
+              <Item item={item} />
+            </div>
           ))}
         </div>
         <div className={classNames(styles.box_wrapper)}>
@@ -119,7 +136,9 @@ const Inventory = () => {
           </div>
           <hr />
           {inkBoxData.map((item) => (
-            <Item {...item} />
+            <div key={item.code as React.Key}>
+              <Item item={item} />
+            </div>
           ))}
         </div>
       </div>

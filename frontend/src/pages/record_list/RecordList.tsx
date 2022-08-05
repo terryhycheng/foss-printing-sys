@@ -25,8 +25,26 @@ const RecordList = () => {
             Add Print Record
           </button>
         </div>
-        <div>
+        <div className={classNames(styles.filter_wrapper, styles.table)}>
           <h3>Filters</h3>
+          <div className={classNames(styles.select_box)}>
+            <label htmlFor="byYear">Year</label>
+            <select name="byYear" id="byYear" defaultValue="">
+              <option value="">All</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+            </select>
+          </div>
+          <div className={classNames(styles.select_box)}>
+            <label htmlFor="byYear">Project</label>
+            <select name="byYear" id="byYear" defaultValue="">
+              <option value="">All</option>
+              <option value="faculty">Faculty</option>
+              <option value="jcecc">JCECC</option>
+              <option value="jcwise">JCWISE</option>
+            </select>
+          </div>
         </div>
         <div className={classNames(styles.table)}>
           <div className={classNames(styles.grid, styles.header)}>

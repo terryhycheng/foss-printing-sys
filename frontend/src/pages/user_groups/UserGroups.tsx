@@ -42,15 +42,17 @@ const MessageBox: FC = () => {
   );
 };
 
-const UserBox: FC<Group> = ({ id, slug, FullName, archive }) => {
+const UserBox = (props: { key: React.Key; row: Group }) => {
+  const onDelete = (id: Number) => console.log(id);
+
   return (
-    <div key={id as React.Key} className={classNames(styles.box)}>
+    <div className={classNames(styles.box)}>
       <div className={classNames(styles.left)}>
-        <h2>{slug}</h2>
-        <p>{FullName}</p>
+        <h2>{props.row.slug}</h2>
+        <p>{props.row.FullName}</p>
       </div>
       <div className={classNames(styles.right)}>
-        {archive ? (
+        {props.row.archive ? (
           <Tooltip title="Unarchive">
             <div className={classNames(styles.icon_wrapper)}>
               <UnarchiveIcon />
@@ -69,7 +71,10 @@ const UserBox: FC<Group> = ({ id, slug, FullName, archive }) => {
               </div>
             </Tooltip>
             <Tooltip title="Delete">
-              <div className={classNames(styles.icon_wrapper, styles.delete)}>
+              <div
+                className={classNames(styles.icon_wrapper, styles.delete)}
+                onClick={() => onDelete(props.row.id)}
+              >
                 <DeleteOutlineIcon />
               </div>
             </Tooltip>
@@ -84,8 +89,6 @@ const UserGroups: FC = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const handleOpen = () => setIsModal(true);
 
-  const onDelete = (id: Number) => console.log(id);
-
   return (
     <Layout>
       <div className={classNames(styles.main_container)}>
@@ -99,7 +102,10 @@ const UserGroups: FC = () => {
         <div className={classNames(styles.table)}>
           <h2>Active</h2>
           {list.length ? (
-            list.map((row) => !row.archive && <UserBox {...row} />)
+            list.map(
+              (row) =>
+                !row.archive && <UserBox key={row.id as React.Key} row={row} />
+            )
           ) : (
             <MessageBox />
           )}
@@ -107,7 +113,10 @@ const UserGroups: FC = () => {
         <div className={classNames(styles.table)}>
           <h2>Archived</h2>
           {list.length ? (
-            list.map((row) => row.archive && <UserBox {...row} />)
+            list.map(
+              (row) =>
+                row.archive && <UserBox key={row.id as React.Key} row={row} />
+            )
           ) : (
             <MessageBox />
           )}

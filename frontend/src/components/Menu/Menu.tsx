@@ -46,13 +46,13 @@ const Menu = () => {
         </Link>
         {/* ------------------------------------------------------------ */}
         <h4 className={styles.title}>Print records</h4>
-        <Link to={"/"}>
+        <Link to={"/printer-info"}>
           <li>
             <LocalPrintshopIcon />
             Printer Info
           </li>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/contact"}>
           <li>
             <MailOutlineIcon />
             Contact Info
@@ -60,7 +60,7 @@ const Menu = () => {
         </Link>
         {/* ------------------------------------------------------------ */}
         <h4 className={styles.title}>Print records</h4>
-        <Link to={"/"}>
+        <Link to={"/system-user"}>
           <li>
             <PersonOutlineIcon />
             System Users
