@@ -1,0 +1,36 @@
+@use "../../style/" as *;
+
+.modal_container {
+  @extend .light_shadow, .rounded;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 3rem;
+  padding: 3rem;
+  background-color: white;
+}
+
+.select_box {
+  width: 100%;
+  margin-top: 1rem;
+
+  label {
+    opacity: 0.5;
+  }
+
+  select,
+  input {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  }
+}
+
+.submit {
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: center;
+}

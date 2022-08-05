@@ -13,12 +13,12 @@ import moment from "moment";
 
 const Header = () => {
   const [timeValue, setTimeValue] = useState(
-    moment().format("MMMM Do YYYY, h:mm:ss a")
+    moment().format("Do, MMMM YYYY, h:mm:ss a")
   );
 
   useEffect(() => {
     const interval = setInterval(
-      () => setTimeValue(moment().format("MMMM Do YYYY, h:mm:ss a")),
+      () => setTimeValue(moment().format("Do, MMMM YYYY, h:mm:ss a")),
       1000
     );
 
@@ -35,7 +35,7 @@ const Header = () => {
             <MenuIcon className="icon" />
           </div>
         </Tooltip>
-        <p>
+        <p style={{ opacity: "0.5" }}>
           <AccessTimeIcon />
           {timeValue}
         </p>

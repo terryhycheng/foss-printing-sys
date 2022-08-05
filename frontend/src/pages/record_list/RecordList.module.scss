@@ -18,16 +18,51 @@
   padding: 1rem 2rem;
 }
 
-.modal_container {
-  @extend .light_shadow, .rounded;
-  max-width: 800px;
-  margin: auto;
-  margin-top: 3rem;
-  padding: 3rem;
-  background-color: white;
+.btn_outline {
+  color: $red-color;
+  background: none;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border: 1px solid $red-color;
+  border-radius: 0.3rem;
+
+  &:hover {
+    background: rgba($color: $red-color, $alpha: 0.1);
+  }
 }
 
-.select_box {
-  width: 100%;
-  margin: 1rem 0;
+.table {
+  display: flex;
+  flex-direction: column;
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 1.5rem 0.5rem;
+    gap: 1rem;
+  }
+
+  .header {
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 2px solid black;
+  }
+
+  .row {
+    border-bottom: 1px solid rgb(213, 213, 213);
+
+    &:hover {
+      background: rgb(244, 244, 244);
+    }
+  }
+
+  .delete {
+    max-width: 50px;
+    &:hover {
+      border: 1px solid rgba($color: $red-color, $alpha: 0.15);
+      background: rgba($color: $red-color, $alpha: 0.3);
+      color: $red-color;
+    }
+  }
 }

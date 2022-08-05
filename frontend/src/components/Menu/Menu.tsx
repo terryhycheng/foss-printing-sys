@@ -38,7 +38,7 @@ const Menu = () => {
         </Link>
         {/* ------------------------------------------------------------ */}
         <h4 className={styles.title}>Consumables</h4>
-        <Link to={"/"}>
+        <Link to={"/inventory"}>
           <li>
             <InboxIcon />
             Inventory

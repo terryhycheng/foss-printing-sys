@@ -1,0 +1,70 @@
+@use "../../style/" as *;
+
+.inventory_box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  gap: 1rem;
+}
+
+.icon_title {
+  display: flex;
+  gap: 0.6rem;
+
+  @include mobile() {
+    justify-content: center;
+  }
+}
+
+.box_wrapper {
+  @extend .rounded, .light_shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  padding: 2rem;
+  flex: 1;
+
+  h2 {
+    margin-top: 1rem;
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  justify-content: space-between;
+  padding: 1.5rem 0.5rem;
+  border-bottom: 1px solid lightgray;
+
+  &:hover {
+    background: rgb(244, 244, 244);
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .number {
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+}
+
+.table_title {
+  h3 {
+    font-weight: 600;
+  }
+}
+
+hr {
+  width: 100%;
+  margin: 1rem 0;
+}
