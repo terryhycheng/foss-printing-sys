@@ -5,45 +5,46 @@ import Modal from "@mui/material/Modal";
 
 import { useForm } from "react-hook-form";
 import moment from "moment";
-
-const paperSize = [
-  {
-    id: 1,
-    value: "Satin Photographic Paper 200gsm",
-  },
-  {
-    id: 2,
-    value: "Satin Photographic Paper 240gsm",
-  },
-  {
-    id: 3,
-    value: "Glossy Photographic Paper 200gsm",
-  },
-  {
-    id: 4,
-    value: "Glossy Photographic Paper 240gsm",
-  },
-];
+import { InventoryData } from "../../data/inventory";
+import { list } from "../../data/userGroups";
+import axios from "axios";
+import { useState } from "react";
 
 const paperType = ["A1", "A2", "A3"];
-
-const userGroup = ["JCECC", "JC Wise", "JC Panda"];
 
 type Props = {
   isModal: boolean;
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+  reload: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const RecordModal: React.FC<Props> = ({ isModal, setIsModal }) => {
+const RecordModal: React.FC<Props> = ({
+  isModal,
+  setIsModal,
+  reload,
+  setReload,
+}) => {
   const handleClose = () => setIsModal(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = (data: any) => {
+  const link = "http://localhost:5000/print";
+
+  const onSubmit = async (data: any) => {
     console.log(data);
+    setIsLoading(true);
+    try {
+      await axios.post(link, data);
+    } catch (error) {
+      console.error(error);
+    }
+    setReload(!reload);
     reset();
     handleClose();
+    setIsLoading(false);
   };
+
   return (
     <Modal
       open={isModal}
@@ -68,7 +69,7 @@ const RecordModal: React.FC<Props> = ({ isModal, setIsModal }) => {
             <input
               id="event"
               type="text"
-              {...register("event", { required: true })}
+              {...register("eventName", { required: true })}
             />
           </div>
           <div style={{ display: "flex", gap: "1rem" }}>
@@ -83,9 +84,9 @@ const RecordModal: React.FC<Props> = ({ isModal, setIsModal }) => {
                 <option disabled value="">
                   Please select
                 </option>
-                {userGroup.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                {list.map((option) => (
+                  <option key={option.id} value={option.slug}>
+                    {option.slug}
                   </option>
                 ))}
               </select>
@@ -106,7 +107,7 @@ const RecordModal: React.FC<Props> = ({ isModal, setIsModal }) => {
                 id="paperSize"
                 defaultValue=""
                 className={classNames(styles.select_box)}
-                {...register("paperSize", { required: true })}
+                {...register("size", { required: true })}
               >
                 <option disabled value="">
                   Please select
@@ -139,17 +140,28 @@ const RecordModal: React.FC<Props> = ({ isModal, setIsModal }) => {
               <option disabled value="">
                 Please select
               </option>
-              {paperSize.map((option) => (
-                <option key={option.id} value={option.value}>
-                  {option.value}
-                </option>
-              ))}
+              {InventoryData.map(
+                (option) =>
+                  option.type === "paper_roll" && (
+                    <option key={option.code} value={option.name}>
+                      {option.name}
+                    </option>
+                  )
+              )}
             </select>
           </div>
-          <input
-            className={classNames(styles.btn, styles.submit)}
-            type="submit"
-          />
+          {isLoading ? (
+            <input
+              disabled
+              className={classNames(styles.btn, styles.submit, styles.loading)}
+              type="submit"
+            />
+          ) : (
+            <input
+              className={classNames(styles.btn, styles.submit)}
+              type="submit"
+            />
+          )}
         </form>
       </div>
     </Modal>

@@ -1,0 +1,29 @@
+@use "../../style/" as *;
+
+.box {
+  @extend .card;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 8px;
+
+  .right {
+    display: flex;
+    gap: 1rem;
+
+    .icon_wrapper {
+      padding: 1rem;
+    }
+
+    .delete {
+      &:hover {
+        border: 1px solid rgba($color: $red-color, $alpha: 0.15);
+        background: rgba($color: $red-color, $alpha: 0.15);
+        color: $red-color;
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: 0.3rem;
+  }
+}

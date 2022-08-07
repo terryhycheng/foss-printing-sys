@@ -1,1 +1,17 @@
 @use "../../style/" as *;
+
+.info_box {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin: 0.4rem 0;
+
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.main_container {
+  .title {
+    margin-top: 2rem;
+  }
+}

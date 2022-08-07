@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export const rows = [
+export const records = [
   {
     id: 1,
     date: moment().format("YYYY-MM-DD"),

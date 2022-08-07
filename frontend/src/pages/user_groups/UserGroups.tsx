@@ -1,38 +1,22 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import classNames from "classnames";
 import Layout from "../../layouts/Layout";
 import styles from "./UserGroups.module.scss";
 
 import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
-import Tooltip from "@mui/material/Tooltip";
 import UserGroupModal from "./UserGroupModal";
+import { UserBox } from "./UserBox";
+import { list } from "../../data/userGroups";
+import axios from "axios";
+import Loader from "../../components/loader/Loader";
 
-type Group = {
-  id: Number;
-  slug: String;
-  FullName: String;
+export type Group = {
+  id: number;
+  slug: string;
+  FullName: string;
   archive: boolean;
 };
-
-const list: Group[] = [
-  {
-    id: 1,
-    slug: "JCECC",
-    FullName: "Jockey Club End-of-Life Community Care Project",
-    archive: false,
-  },
-  {
-    id: 2,
-    slug: "Faculty",
-    FullName: "Faculty of Social Sciences",
-    archive: true,
-  },
-];
 
 const MessageBox: FC = () => {
   return (
@@ -42,87 +26,87 @@ const MessageBox: FC = () => {
   );
 };
 
-const UserBox = (props: { key: React.Key; row: Group }) => {
-  const onDelete = (id: Number) => console.log(id);
-
-  return (
-    <div className={classNames(styles.box)}>
-      <div className={classNames(styles.left)}>
-        <h2>{props.row.slug}</h2>
-        <p>{props.row.FullName}</p>
-      </div>
-      <div className={classNames(styles.right)}>
-        {props.row.archive ? (
-          <Tooltip title="Unarchive">
-            <div className={classNames(styles.icon_wrapper)}>
-              <UnarchiveIcon />
-            </div>
-          </Tooltip>
-        ) : (
-          <>
-            <Tooltip title="Edit">
-              <div className={classNames(styles.icon_wrapper)}>
-                <EditIcon />
-              </div>
-            </Tooltip>
-            <Tooltip title="Archive">
-              <div className={classNames(styles.icon_wrapper)}>
-                <ArchiveIcon />
-              </div>
-            </Tooltip>
-            <Tooltip title="Delete">
-              <div
-                className={classNames(styles.icon_wrapper, styles.delete)}
-                onClick={() => onDelete(props.row.id)}
-              >
-                <DeleteOutlineIcon />
-              </div>
-            </Tooltip>
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
-
 const UserGroups: FC = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [reload, setReload] = useState<boolean>(false);
+  const [data, setData] = useState<Group[]>([]);
   const handleOpen = () => setIsModal(true);
+  const link = "http://localhost:5000/user_group";
+
+  useEffect(() => {
+    fetchData();
+  }, [reload]);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(link);
+      setData(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Layout>
-      <div className={classNames(styles.main_container)}>
-        <div className={classNames(styles.title_container)}>
-          <h2>User Groups</h2>
-          <button className={classNames(styles.btn)} onClick={handleOpen}>
-            <AddIcon />
-            Add User Group
-          </button>
+      {!isLoading && (
+        <div className={classNames(styles.main_container)}>
+          <div className={classNames(styles.title_box)}>
+            <h2>User Groups</h2>
+            <button className={classNames(styles.btn)} onClick={handleOpen}>
+              <AddIcon />
+              Add User Group
+            </button>
+          </div>
+          <div className={classNames(styles.table)}>
+            <h2>Active</h2>
+            {data.length ? (
+              data.map(
+                (row) =>
+                  !row.archive && (
+                    <UserBox
+                      key={row.id as React.Key}
+                      row={row}
+                      reload={reload}
+                      setReload={setReload}
+                    />
+                  )
+              )
+            ) : (
+              <MessageBox />
+            )}
+          </div>
+          <div className={classNames(styles.table)}>
+            <h2>Archived</h2>
+            {data.length ? (
+              data.map(
+                (row) =>
+                  row.archive && (
+                    <UserBox
+                      key={row.id as React.Key}
+                      row={row}
+                      reload={reload}
+                      setReload={setReload}
+                    />
+                  )
+              )
+            ) : (
+              <MessageBox />
+            )}
+          </div>
         </div>
-        <div className={classNames(styles.table)}>
-          <h2>Active</h2>
-          {list.length ? (
-            list.map(
-              (row) =>
-                !row.archive && <UserBox key={row.id as React.Key} row={row} />
-            )
-          ) : (
-            <MessageBox />
-          )}
-        </div>
-        <div className={classNames(styles.table)}>
-          <h2>Archived</h2>
-          {list.length ? (
-            list.map(
-              (row) =>
-                row.archive && <UserBox key={row.id as React.Key} row={row} />
-            )
-          ) : (
-            <MessageBox />
-          )}
-        </div>
-        <UserGroupModal isModal={isModal} setIsModal={setIsModal} />
-      </div>
+      )}
+      {isLoading && <Loader />}
+      {isModal && (
+        <UserGroupModal
+          isModal={isModal}
+          setIsModal={setIsModal}
+          reload={reload}
+          setReload={setReload}
+        />
+      )}
     </Layout>
   );
 };

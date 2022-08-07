@@ -12,12 +12,12 @@ const logo = require("../../assets/logo.png");
 
 const Header = () => {
   const [timeValue, setTimeValue] = useState(
-    moment().format("Do, MMMM YYYY, h:mm:ss a")
+    moment(new Date()).format("Do, MMMM YYYY, h:mm:ss a")
   );
 
   useEffect(() => {
     const interval = setInterval(
-      () => setTimeValue(moment().format("Do, MMMM YYYY, h:mm:ss a")),
+      () => setTimeValue(moment(new Date()).format("Do, MMMM YYYY, h:mm:ss a")),
       1000
     );
 

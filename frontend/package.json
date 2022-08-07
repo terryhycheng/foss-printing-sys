@@ -17,6 +17,7 @@
     "@types/node": "^16.11.47",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "classnames": "^2.3.1",
     "moment": "^2.29.4",
@@ -33,7 +34,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "server": "json-server --watch db.json -p 5000"
   },
   "eslintConfig": {
     "extends": [

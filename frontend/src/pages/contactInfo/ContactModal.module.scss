@@ -7,23 +7,43 @@
   margin-top: 3rem;
   padding: 3rem;
   background-color: white;
+  max-height: 80vh;
+  overflow-y: auto;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  .subtitle {
+    margin-top: 1.5rem;
+    font-weight: 500;
+  }
 }
 
 .select_box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 
-  label {
+  h3 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  p {
     opacity: 0.5;
   }
 
   select,
   input {
-    padding: 1rem;
+    padding: 0.6rem;
     width: 100%;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
     border: 1px solid rgba($color: #000000, $alpha: 0.2);
   }
 }

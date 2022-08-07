@@ -1,1 +1,31 @@
 @use "../../style/" as *;
+
+.form_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    text-align: center;
+    max-width: 300px;
+    margin: 0;
+    text-decoration: none;
+  }
+}
+
+.info_box {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin: 0.4rem 0;
+  align-items: center;
+
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.main_container {
+  .title {
+    margin-top: 2rem;
+  }
+}

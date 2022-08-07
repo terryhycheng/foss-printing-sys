@@ -17,12 +17,7 @@
 }
 
 .box_wrapper {
-  @extend .rounded, .light_shadow;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: white;
-  padding: 2rem;
+  @extend .card;
   flex: 1;
 
   h2 {
@@ -30,6 +25,15 @@
     font-size: 3.5rem;
     font-weight: 600;
   }
+}
+
+.row_title {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  opacity: 0.4;
 }
 
 .row {
@@ -67,5 +71,6 @@
 
 hr {
   width: 100%;
-  margin: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }

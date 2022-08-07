@@ -1,148 +1,188 @@
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import Layout from "../../layouts/Layout";
 import styles from "./Inventory.module.scss";
 
+import EditIcon from "@mui/icons-material/Edit";
 import LayersIcon from "@mui/icons-material/Layers";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import PrintIcon from "@mui/icons-material/Print";
-import React, { useState } from "react";
 
-type ItemType = {
-  name: String;
-  code: String;
-  qty: Number;
+import InventoryModal from "./InventoryModal";
+import axios from "axios";
+import Loader from "../../components/loader/Loader";
+
+export type InventoryDataType = {
+  id: number;
+  type: string;
+  name: string;
+  code: string;
+  qty: number;
 };
 
-const maintenanceData: ItemType[] = [
-  {
-    name: "Maintenance Cartridge MC-10",
-    code: "1320B014BA",
-    qty: 0,
-  },
-  {
-    name: "Print head PF-04",
-    code: "3630B001AA",
-    qty: 3,
-  },
-];
-
-const inkBoxData: ItemType[] = [
-  {
-    name: "MBK - Ink Tank PFI-8107MBK",
-    code: "6709B001AA",
-    qty: 0,
-  },
-  {
-    name: "BK - Ink Tank PFI-8107BK",
-    code: "6711B001AA",
-    qty: 1,
-  },
-  {
-    name: "C - Ink Tank PFI-8107C",
-    code: "6712B001AA",
-    qty: 1,
-  },
-  {
-    name: "M - Ink Tank PFI-8107M",
-    code: "6713B001AA",
-    qty: 3,
-  },
-  {
-    name: "Y - Ink Tank PFI-8107Y",
-    code: "6714B001AA",
-    qty: 2,
-  },
-];
-
-const Item = (props: { item: ItemType }) => {
-  return (
-    <>
-      {props.item.qty ? (
-        <div
-          key={props.item.code as React.Key}
-          className={classNames(styles.row)}
-        >
-          <p className={styles.title}>{props.item.name}</p>
-          <p>{props.item.code}</p>
-          <p className={styles.number}>
-            {`${props.item.qty}` ? `${props.item.qty}` : `-`}
-          </p>
-        </div>
-      ) : (
-        ""
-      )}
-    </>
-  );
-};
-
+// Main FC
 const Inventory = () => {
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [reload, setReload] = useState<boolean>(false);
+  const [qtyCount, setQtyCount] = useState([0, 0, 0]);
+  const [data, setData] = useState<InventoryDataType[]>([]);
+  const handleOpen = () => setIsModal(true);
+  const link = "http://localhost:5000/inventory";
+
+  // Calculate quantity function
+  const calQty = (data: InventoryDataType[]) => {
+    const count: number[] = [0, 0, 0];
+    for (let item of data) {
+      switch (item.type) {
+        case "maintenance":
+          count[0] += item.qty;
+          break;
+        case "paper_roll":
+          count[1] += item.qty;
+          break;
+        case "ink_box":
+          count[2] += item.qty;
+          break;
+        default:
+          break;
+      }
+    }
+    setQtyCount(count);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [reload]);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(link);
+      setData(res.data);
+      calQty(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Layout>
-      <div className={classNames(styles.main_container)}>
-        <div>
-          <h2>Inventory</h2>
-        </div>
-        <div className={classNames(styles.inventory_box)}>
+      {!isLoading && (
+        <div className={classNames(styles.main_container)}>
+          <div className={classNames(styles.title_box)}>
+            <h2>Inventory</h2>
+            <button className={classNames(styles.btn)} onClick={handleOpen}>
+              <EditIcon />
+              Edit
+            </button>
+          </div>
+          {/* ---------- Overview Box ---------- */}
+          <div className={classNames(styles.inventory_box)}>
+            <div className={classNames(styles.box_wrapper)}>
+              <div className={classNames(styles.icon_title)}>
+                <PrintIcon />
+                <h3>Print Head</h3>
+              </div>
+              <h2>{qtyCount[0]}</h2>
+            </div>
+            <div className={classNames(styles.box_wrapper)}>
+              <div className={classNames(styles.icon_title)}>
+                <LayersIcon />
+                <h3>Paper Rolls</h3>
+              </div>
+              <h2>{qtyCount[1]}</h2>
+            </div>
+            <div className={classNames(styles.box_wrapper)}>
+              <div className={classNames(styles.icon_title)}>
+                <LocalDrinkIcon />
+                <h3>Ink Boxes</h3>
+              </div>
+              <h2>{qtyCount[2]}</h2>
+            </div>
+          </div>
+          {/* ---------- Detail List ---------- */}
           <div className={classNames(styles.box_wrapper)}>
-            <div className={classNames(styles.icon_title)}>
+            <div className={classNames(styles.icon_title, styles.table_title)}>
               <PrintIcon />
               <h3>Print Head</h3>
             </div>
-            <h2>4</h2>
+            <RowTitle />
+            <hr />
+            <Item type={"maintenance"} data={data} />
           </div>
           <div className={classNames(styles.box_wrapper)}>
-            <div className={classNames(styles.icon_title)}>
+            <div className={classNames(styles.icon_title, styles.table_title)}>
               <LayersIcon />
               <h3>Paper Rolls</h3>
             </div>
-            <h2>3</h2>
+            <RowTitle />
+            <hr />
+            <Item type={"paper_roll"} data={data} />
           </div>
           <div className={classNames(styles.box_wrapper)}>
-            <div className={classNames(styles.icon_title)}>
+            <div className={classNames(styles.icon_title, styles.table_title)}>
               <LocalDrinkIcon />
               <h3>Ink Boxes</h3>
             </div>
-            <h2>6</h2>
+            <RowTitle />
+            <hr />
+            <Item type={"ink_box"} data={data} />
           </div>
         </div>
-        <div className={classNames(styles.box_wrapper)}>
-          <div className={classNames(styles.icon_title, styles.table_title)}>
-            <PrintIcon />
-            <h3>Print Head</h3>
-          </div>
-          <hr />
-          {maintenanceData.map((item) => (
-            <div key={item.code as React.Key}>
-              <Item item={item} />
-            </div>
-          ))}
-        </div>
-        <div className={classNames(styles.box_wrapper)}>
-          <div className={classNames(styles.icon_title, styles.table_title)}>
-            <LayersIcon />
-            <h3>Paper Rolls</h3>
-          </div>
-          <hr />
-          {maintenanceData.map((item) => (
-            <div key={item.code as React.Key}>
-              <Item item={item} />
-            </div>
-          ))}
-        </div>
-        <div className={classNames(styles.box_wrapper)}>
-          <div className={classNames(styles.icon_title, styles.table_title)}>
-            <LocalDrinkIcon />
-            <h3>Ink Boxes</h3>
-          </div>
-          <hr />
-          {inkBoxData.map((item) => (
-            <div key={item.code as React.Key}>
-              <Item item={item} />
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
+      <InventoryModal
+        isModal={isModal}
+        setIsModal={setIsModal}
+        data={data}
+        reload={reload}
+        setReload={setReload}
+      />
+      {isLoading && <Loader />}
     </Layout>
+  );
+};
+
+// Row Title FC
+const RowTitle = () => {
+  return (
+    <div className={classNames(styles.row_title)}>
+      <p>Product Name</p>
+      <p>Code</p>
+      <p style={{ textAlign: "center" }}>Quantity</p>
+    </div>
+  );
+};
+
+// Item FC : Interate and display the item while type mataches && Qty > 0
+const Item = (props: { type: String; data: InventoryDataType[] }) => {
+  return (
+    <>
+      {props.data.map(
+        (item) =>
+          // Type checking
+          item.type === props.type && (
+            <div key={item.code as React.Key}>
+              {/* Qty Checking */}
+              {item.qty ? (
+                <div
+                  key={item.code as React.Key}
+                  className={classNames(styles.row)}
+                >
+                  <p className={styles.title}>{item.name}</p>
+                  <p>{item.code}</p>
+                  <p className={styles.number}>
+                    {`${item.qty}` ? `${item.qty}` : `-`}
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          )
+      )}
+    </>
   );
 };
 

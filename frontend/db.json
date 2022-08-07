@@ -1,0 +1,253 @@
+{
+  "inventory": [
+    {
+      "id": 927,
+      "type": "maintenance",
+      "name": "Maintenance Cartridge MC-10",
+      "code": "1320B014BA",
+      "qty": 0
+    },
+    {
+      "id": 547,
+      "type": "maintenance",
+      "name": "Print head PF-04",
+      "code": "3630B001AA",
+      "qty": 2
+    },
+    {
+      "id": 533,
+      "type": "paper_roll",
+      "name": "24lb Bond Paper 24\" x150 ft. 90 gsm",
+      "code": "3873V022",
+      "qty": 0
+    },
+    {
+      "id": 312,
+      "type": "paper_roll",
+      "name": "Canon Matte Coated Paper 170gsm, 24\" x100', 2\" Core ",
+      "code": "0849V349",
+      "qty": 0
+    },
+    {
+      "id": 318,
+      "type": "paper_roll",
+      "name": "Satin Photographic Paper 200gsm, 24\" x 100 ft, 2\" Core",
+      "code": "2047V135",
+      "qty": 1
+    },
+    {
+      "id": 183,
+      "type": "paper_roll",
+      "name": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core",
+      "code": "2047V128",
+      "qty": 0
+    },
+    {
+      "id": 518,
+      "type": "paper_roll",
+      "name": "Glossy Photographic Paper 200gsm 24\" x 100 ft, 2\" Core",
+      "code": "2047V140",
+      "qty": 1
+    },
+    {
+      "id": 871,
+      "type": "paper_roll",
+      "name": "Glossy Photographic Paper 240gsm 24\" x 100 ft, 3\" Core",
+      "code": "2047V145",
+      "qty": 0
+    },
+    {
+      "id": 461,
+      "type": "ink_box",
+      "name": "MBK - Ink Tank PFI-8107MBK",
+      "code": "6709B001AA",
+      "qty": 1
+    },
+    {
+      "id": 214,
+      "type": "ink_box",
+      "name": "BK - Ink Tank PFI-8107BK",
+      "code": "6711B001AA",
+      "qty": 1
+    },
+    {
+      "id": 208,
+      "type": "ink_box",
+      "name": "C - Ink Tank PFI-8107C",
+      "code": "6712B001AA",
+      "qty": 1
+    },
+    {
+      "id": 745,
+      "type": "ink_box",
+      "name": "M - Ink Tank PFI-8107M",
+      "code": "6713B001AA",
+      "qty": 2
+    },
+    {
+      "id": 206,
+      "type": "ink_box",
+      "name": "Y - Ink Tank PFI-8107Y",
+      "code": "6714B001AA",
+      "qty": 2
+    }
+  ],
+  "contact": [
+    {
+      "id": 356,
+      "type": "form",
+      "title": "Latest Order Form",
+      "content": "https://www.facebook.com"
+    },
+    {
+      "id": 590,
+      "type": "contact_person",
+      "title": "Name",
+      "content": "Kit So 蘇潔"
+    },
+    {
+      "id": 987,
+      "type": "contact_person",
+      "title": "Title",
+      "content": "Senior Customer Relationship Officer"
+    },
+    {
+      "id": 471,
+      "type": "contact_person",
+      "title": "Phone",
+      "content": "(852) 2170-2090"
+    },
+    {
+      "id": 570,
+      "type": "contact_person",
+      "title": "Mobile",
+      "content": "(852) 6111-3796"
+    },
+    {
+      "id": 298,
+      "type": "contact_person",
+      "title": "Email",
+      "content": "kit_so@chk.canon.com.hk"
+    },
+    {
+      "id": 336,
+      "type": "canon",
+      "title": "Canon Official Website",
+      "content": "https://www.canon.com.hk",
+      "link": "https://www.canon.com.hk/"
+    },
+    {
+      "id": 800,
+      "type": "canon",
+      "title": "Customer Services Hotline",
+      "content": "(852) 3191-2323"
+    },
+    {
+      "id": 84,
+      "type": "canon",
+      "title": "Address",
+      "content": "5/F., Tower A, China Life Center,18 Hung Luen Road, Hunghom, Kowloon, Hong Kong"
+    }
+  ],
+  "printer": [
+    {
+      "id": 185,
+      "type": "basic_info",
+      "title": "Product Name",
+      "content": "CANON iPF671",
+      "link": ""
+    },
+    {
+      "id": 741,
+      "type": "basic_info",
+      "title": "Manufacturer",
+      "content": "Canon",
+      "link": ""
+    },
+    {
+      "id": 990,
+      "type": "basic_info",
+      "title": "Location",
+      "content": "Printing room, 11/F, The Jockey Club Tower",
+      "link": ""
+    },
+    {
+      "id": 918,
+      "type": "basic_info",
+      "title": "Internal IP Address",
+      "content": "10.99.227.48",
+      "link": ""
+    },
+    {
+      "id": 938,
+      "type": "basic_info",
+      "title": "Serial Number",
+      "content": "BACW2123",
+      "link": ""
+    },
+    {
+      "id": 5,
+      "type": "link",
+      "title": "Driver Dowload",
+      "content": "https://hk.canon/en/support/iPF671/model"
+    },
+    {
+      "id": 657,
+      "type": "link",
+      "title": "User's Guide",
+      "content": "https://asia.canon/en/support/0301759901"
+    }
+  ],
+  "user_group": [
+    {
+      "id": 1,
+      "slug": "JCECC",
+      "FullName": "Jockey Club End-of-Life Community Care Project",
+      "archive": false
+    },
+    {
+      "id": 2,
+      "slug": "Faculty",
+      "FullName": "Faculty of Social Sciences",
+      "archive": false
+    },
+    {
+      "id": 980,
+      "FullName": "Jockey Club Water Initiative on Sustainability and Engagement",
+      "slug": "JC-WISE",
+      "archive": true
+    }
+  ],
+  "print": [
+    {
+      "id": 1,
+      "date": "2022-08-07",
+      "eventName": "Snow",
+      "userGroup": "JCECC",
+      "quantity": 35,
+      "size": "A2",
+      "requester": "Mary Tsang",
+      "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
+    },
+    {
+      "id": 2,
+      "date": "2022-12-24",
+      "eventName": "Lannister Lannister Lannister Lannister Lannister Lannister Lannister",
+      "userGroup": "JC WISE",
+      "quantity": 42,
+      "size": "A2",
+      "requester": "Alan Tang",
+      "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
+    },
+    {
+      "id": 3,
+      "date": "2021-05-22",
+      "eventName": "Lannister",
+      "userGroup": "Faculty",
+      "quantity": 45,
+      "size": "A2",
+      "requester": "Mary Tsang",
+      "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
+    }
+  ]
+}

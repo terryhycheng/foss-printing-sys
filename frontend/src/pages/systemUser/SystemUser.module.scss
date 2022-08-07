@@ -1,1 +1,29 @@
 @use "../../style/" as *;
+
+.row_title,
+.card {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 2fr 1fr;
+
+  h4 {
+    font-weight: 600;
+  }
+}
+
+.action_box {
+  display: flex;
+  gap: 1rem;
+
+  .icon_wrapper {
+    padding: 1rem;
+  }
+
+  .delete {
+    &:hover {
+      border: 1px solid rgba($color: $red-color, $alpha: 0.15);
+      background: rgba($color: $red-color, $alpha: 0.15);
+      color: $red-color;
+    }
+  }
+}

@@ -1,23 +1,5 @@
 @use "../../style/" as *;
 
-.title_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: auto;
-  font-size: 1rem;
-  border-radius: 5px;
-  padding: 1rem 2rem;
-}
-
 .btn_outline {
   color: $red-color;
   background: none;
