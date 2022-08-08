@@ -44,18 +44,20 @@ const Header = () => {
         <p>
           Log in as <strong>Terry Cheng</strong>
         </p>
-        <Tooltip title="Account setting" arrow>
-          <div className={classNames(styles.icon_wrapper)}>
-            <SettingsIcon />
-          </div>
-        </Tooltip>
-        <Link to={"/auth"}>
-          <Tooltip title="Log out" arrow>
+        <div className={classNames(styles.icon_box)}>
+          <Tooltip title="Account setting" arrow>
             <div className={classNames(styles.icon_wrapper)}>
-              <LogoutIcon />
+              <SettingsIcon />
             </div>
           </Tooltip>
-        </Link>
+          <Link to={"/auth"}>
+            <Tooltip title="Log out" arrow>
+              <div className={classNames(styles.icon_wrapper)}>
+                <LogoutIcon />
+              </div>
+            </Tooltip>
+          </Link>
+        </div>
       </div>
     </header>
   );

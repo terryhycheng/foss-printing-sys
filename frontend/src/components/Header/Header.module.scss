@@ -9,7 +9,9 @@
   align-items: center;
 
   @include mobile() {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 10px solid $dark-blue;
   }
 
   a {
@@ -27,7 +29,15 @@
     gap: 0.5rem;
     align-items: center;
     font-weight: 400;
+    @include mobile() {
+      display: none;
+    }
   }
+}
+
+.icon_box {
+  display: flex;
+  gap: 1rem;
 }
 
 .right_wrapper {
@@ -39,7 +49,9 @@
     font-weight: 600;
   }
 
-  @include mobile() {
-    flex-direction: column;
+  p {
+    @include mobile() {
+      display: none;
+    }
   }
 }
