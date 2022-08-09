@@ -6,7 +6,6 @@ import { Group } from "./UserGroups";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import ArchiveIcon from "@mui/icons-material/Archive";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
 import Tooltip from "@mui/material/Tooltip";
@@ -66,14 +65,6 @@ export const UserBox: FC<PropsType> = ({ row, reload, setReload }) => {
                   onClick={handleOpen}
                 >
                   <EditIcon />
-                </div>
-              </Tooltip>
-              <Tooltip title="Archive">
-                <div
-                  className={classNames(styles.icon_wrapper)}
-                  onClick={() => onArchive(row.id)}
-                >
-                  <ArchiveIcon />
                 </div>
               </Tooltip>
               <Tooltip title="Delete">

@@ -34,7 +34,6 @@ const UserGroupModal: React.FC<Props> = ({
           id: Math.round(Math.random() * 1000),
           FullName: data.FullName,
           slug: data.slug,
-          archive: false,
         });
     setReload(!reload);
     reset();

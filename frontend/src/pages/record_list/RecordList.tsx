@@ -9,6 +9,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import moment from "moment";
 
 export type recordType = {
   id: number;
@@ -25,6 +26,8 @@ const RecordList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<recordType[]>([]);
+  const [projectFilter, setProjectFilter] = useState("");
+  const [yearFilter, setYearFilter] = useState("");
   const handleOpen = () => setIsModal(true);
   const link = "http://localhost:5000/print";
 
@@ -63,7 +66,14 @@ const RecordList = () => {
             <h3>Filters</h3>
             <div className={classNames(styles.select_box)}>
               <label htmlFor="byYear">Year</label>
-              <select name="byYear" id="byYear" defaultValue="">
+              <select
+                name="byYear"
+                id="byYear"
+                defaultValue=""
+                onChange={(e) => {
+                  setYearFilter(e.target.value);
+                }}
+              >
                 <option value="">All</option>
                 <option value="2022">2022</option>
                 <option value="2021">2021</option>
@@ -72,11 +82,18 @@ const RecordList = () => {
             </div>
             <div className={classNames(styles.select_box)}>
               <label htmlFor="byYear">Project</label>
-              <select name="byYear" id="byYear" defaultValue="">
+              <select
+                name="byYear"
+                id="byYear"
+                defaultValue=""
+                onChange={(e) => {
+                  setProjectFilter(e.target.value);
+                }}
+              >
                 <option value="">All</option>
-                <option value="faculty">Faculty</option>
-                <option value="jcecc">JCECC</option>
-                <option value="jcwise">JCWISE</option>
+                <option value="Faculty">Faculty</option>
+                <option value="JCECC">JCECC</option>
+                <option value="JCWISE">JCWISE</option>
               </select>
             </div>
           </div>
@@ -92,13 +109,17 @@ const RecordList = () => {
             </div>
             {data
               .filter((val) => {
-                if (true) {
+                if (projectFilter === "") {
                   return val;
+                } else {
+                  return val.userGroup === projectFilter;
                 }
               })
               .filter((val) => {
-                if (true) {
+                if (yearFilter === "") {
                   return val;
+                } else {
+                  return moment(val.date).year().toString() === yearFilter;
                 }
               })
               .map(

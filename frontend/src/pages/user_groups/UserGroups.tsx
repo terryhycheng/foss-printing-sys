@@ -78,24 +78,6 @@ const UserGroups: FC = () => {
               <MessageBox />
             )}
           </div>
-          <div className={classNames(styles.table)}>
-            <h2>Archived</h2>
-            {data.length ? (
-              data.map(
-                (row) =>
-                  row.archive && (
-                    <UserBox
-                      key={row.id as React.Key}
-                      row={row}
-                      reload={reload}
-                      setReload={setReload}
-                    />
-                  )
-              )
-            ) : (
-              <MessageBox />
-            )}
-          </div>
         </div>
       )}
       {isLoading && <Loader />}

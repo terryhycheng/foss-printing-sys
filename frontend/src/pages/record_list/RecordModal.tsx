@@ -6,9 +6,9 @@ import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
 import moment from "moment";
 import { InventoryData } from "../../data/inventory";
-import { list } from "../../data/userGroups";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Group } from "../user_groups/UserGroups";
 
 const paperType = ["A1", "A2", "A3"];
 
@@ -27,9 +27,19 @@ const RecordModal: React.FC<Props> = ({
 }) => {
   const handleClose = () => setIsModal(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [list, setList] = useState<Group[]>([]);
   const { register, handleSubmit, reset } = useForm();
 
   const link = "http://localhost:5000/print";
+
+  useEffect(() => {
+    fetchUserGroup();
+  }, []);
+
+  const fetchUserGroup = async () => {
+    const data = await axios.get("http://localhost:5000/user_group");
+    setList(data.data);
+  };
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -125,7 +135,10 @@ const RecordModal: React.FC<Props> = ({
                 id="qty"
                 type="number"
                 step="0.5"
-                {...register("quantity", { required: true })}
+                {...register("quantity", {
+                  required: true,
+                  valueAsNumber: true,
+                })}
               />
             </div>
           </div>

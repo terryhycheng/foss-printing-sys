@@ -202,20 +202,12 @@
     {
       "id": 1,
       "slug": "JCECC",
-      "FullName": "Jockey Club End-of-Life Community Care Project",
-      "archive": false
+      "FullName": "Jockey Club End-of-Life Community Care Project"
     },
     {
       "id": 2,
       "slug": "Faculty",
-      "FullName": "Faculty of Social Sciences",
-      "archive": false
-    },
-    {
-      "id": 980,
-      "FullName": "Jockey Club Water Initiative on Sustainability and Engagement",
-      "slug": "JC-WISE",
-      "archive": true
+      "FullName": "Faculty of Social Sciences"
     }
   ],
   "print": [
@@ -230,16 +222,6 @@
       "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
     },
     {
-      "id": 2,
-      "date": "2022-12-24",
-      "eventName": "Lannister Lannister Lannister Lannister Lannister Lannister Lannister",
-      "userGroup": "JC WISE",
-      "quantity": 42,
-      "size": "A2",
-      "requester": "Alan Tang",
-      "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
-    },
-    {
       "id": 3,
       "date": "2021-05-22",
       "eventName": "Lannister",
@@ -248,6 +230,26 @@
       "size": "A2",
       "requester": "Mary Tsang",
       "paperType": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core"
+    },
+    {
+      "date": "2022-07-13",
+      "eventName": "Event 2",
+      "userGroup": "Faculty",
+      "requester": "Mary",
+      "size": "A2",
+      "quantity": 53,
+      "paperType": "Glossy Photographic Paper 200gsm 24\" x 100 ft, 2\" Core",
+      "id": 5
+    },
+    {
+      "date": "2022-08-09",
+      "eventName": "Qwrqrwqrw",
+      "userGroup": "Faculty",
+      "requester": "Mqrihqrowi",
+      "size": "A2",
+      "quantity": 13,
+      "paperType": "Satin Photographic Paper 200gsm, 24\" x 100 ft, 2\" Core",
+      "id": 6
     }
   ]
 }
