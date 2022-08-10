@@ -5,12 +5,12 @@ import styles from "./RecordList.module.scss";
 import RecordModal from "./RecordModal";
 
 import AddIcon from "@mui/icons-material/Add";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import moment from "moment";
 import { Group } from "../user_groups/UserGroups";
+import RecordRow from "./RecordRow";
 
 export type recordType = {
   id: string;
@@ -19,6 +19,7 @@ export type recordType = {
   userGroupId: string;
   userGroup?: string;
   quantity: number;
+  paperType: string;
   size: string;
   requester: string;
 };
@@ -49,11 +50,6 @@ const RecordList = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const onDelete = async (id: string) => {
-    await axios.delete(`${link}/print/${id}`);
-    setReload(!reload);
   };
 
   data.map((item: recordType) => {
@@ -90,7 +86,6 @@ const RecordList = () => {
                 <option value="">All</option>
                 <option value="2022">2022</option>
                 <option value="2021">2021</option>
-                <option value="2020">2020</option>
               </select>
             </div>
             <div className={classNames(styles.select_box)}>
@@ -104,9 +99,11 @@ const RecordList = () => {
                 }}
               >
                 <option value="">All</option>
-                <option value="Faculty">Faculty</option>
-                <option value="JCECC">JCECC</option>
-                <option value="JCWISE">JCWISE</option>
+                {userGroupData.map((group) => (
+                  <option key={group.id} value={group.slug}>
+                    {group.slug}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -135,31 +132,14 @@ const RecordList = () => {
                   return moment(val.date).year().toString() === yearFilter;
                 }
               })
-              .map(
-                (row) =>
-                  true && (
-                    <div
-                      key={row.id}
-                      className={classNames(styles.grid, styles.row)}
-                    >
-                      <p>{moment(row.date).format("Do MMM YYYY")}</p>
-                      <p>{row.eventName}</p>
-                      <p>{row.userGroup}</p>
-                      <p>{row.quantity}</p>
-                      <p>{row.size}</p>
-                      <p>{row.requester}</p>
-                      <div
-                        className={classNames(
-                          styles.icon_wrapper,
-                          styles.delete
-                        )}
-                        onClick={() => onDelete(row.id)}
-                      >
-                        <DeleteOutlineIcon />
-                      </div>
-                    </div>
-                  )
-              )}
+              .map((row) => (
+                <RecordRow
+                  key={row.id}
+                  row={row}
+                  reload={reload}
+                  setReload={setReload}
+                />
+              ))}
           </div>
         </div>
       )}

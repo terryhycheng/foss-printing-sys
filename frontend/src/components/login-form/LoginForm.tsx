@@ -1,17 +1,27 @@
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
+import axios from "axios";
 
 const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const link = "http://localhost:5001/api/auth";
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
+    try {
+      const res = await axios.post(link, data);
+      console.log(res.data);
+      // localStorage
+      // navigate("/");
+    } catch (error) {
+      // error message -> true
+      console.log(error);
+    }
     reset();
-    navigate("/");
   };
   return (
     <div className={classNames(styles.loginForm)}>

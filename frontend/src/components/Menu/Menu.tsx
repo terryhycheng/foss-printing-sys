@@ -8,7 +8,6 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import InboxIcon from "@mui/icons-material/Inbox";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const Menu = () => {
   return (
@@ -56,14 +55,6 @@ const Menu = () => {
           <li>
             <MailOutlineIcon />
             Contact Info
-          </li>
-        </Link>
-        {/* ------------------------------------------------------------ */}
-        <h4 className={styles.title}>Print records</h4>
-        <Link to={"/system-user"}>
-          <li>
-            <PersonOutlineIcon />
-            System Users
           </li>
         </Link>
       </ul>

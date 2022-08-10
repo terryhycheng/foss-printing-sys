@@ -125,8 +125,6 @@ function Dashboard() {
       setPieData(pie_data);
       setPieLabel(pie_label);
     });
-    // console.log(projectTotal);
-    // console.log(printData);
   };
 
   const monthData = (data: recordType[]) => {
@@ -147,18 +145,24 @@ function Dashboard() {
         if (moment(item.date).format("MM YYYY") === month.time) {
           if (item.size === "A1") {
             month.quantity += item.quantity * 2;
+            total_year_print += item.quantity * 2;
           } else if (item.size === "A3") {
             month.quantity += item.quantity / 2;
+            total_year_print += item.quantity / 2;
           } else {
             month.quantity += item.quantity;
+            total_year_print += item.quantity;
           }
         }
       });
-      if (moment(item.date).format("YYYY") === moment().format("YYYY")) {
-        total_year_print += item.quantity;
-      }
       if (moment(item.date).format("MM YYYY") === moment().format("MM YYYY")) {
-        total_curMonth_print += item.quantity;
+        if (item.size === "A1") {
+          total_curMonth_print += item.quantity * 2;
+        } else if (item.size === "A3") {
+          total_curMonth_print += item.quantity / 2;
+        } else {
+          total_curMonth_print += item.quantity;
+        }
       }
       total_total_print += item.quantity;
     });

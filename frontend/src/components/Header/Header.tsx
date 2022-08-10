@@ -41,9 +41,6 @@ const Header = () => {
       </div>
       <div className={classNames(styles.flex, styles.right_wrapper)}>
         <img src={logo} width="220px" alt="foss logo" />
-        <p>
-          Log in as <strong>Terry Cheng</strong>
-        </p>
         <div className={classNames(styles.icon_box)}>
           <Tooltip title="Account setting" arrow>
             <div className={classNames(styles.icon_wrapper)}>

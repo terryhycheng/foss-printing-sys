@@ -6,6 +6,7 @@ import { userGroupRoutes } from "./routes/userGroup";
 import { contactRoutes } from "./routes/contact";
 import { inventoryRoutes } from "./routes/inventory";
 import { printRecordRoutes } from "./routes/printRecord";
+import { authRoutes } from "./routes/auth";
 
 const app: express.Application = express();
 const port = process.env.PORT || 5001;
@@ -22,5 +23,6 @@ userGroupRoutes(app);
 contactRoutes(app);
 inventoryRoutes(app);
 printRecordRoutes(app);
+authRoutes(app);
 
 app.listen(port, () => console.log(`Server is runing on ${port}`));

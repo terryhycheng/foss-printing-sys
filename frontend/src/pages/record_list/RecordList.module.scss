@@ -37,6 +37,10 @@
   .row {
     border-bottom: 1px solid rgb(213, 213, 213);
 
+    strong {
+      font-weight: 500;
+    }
+
     &:hover {
       background: rgb(244, 244, 244);
     }
@@ -46,8 +50,8 @@
     max-width: 50px;
     &:hover {
       border: 1px solid rgba($color: $red-color, $alpha: 0.15);
-      background: rgba($color: $red-color, $alpha: 1);
-      color: white;
+      background: rgba($color: $red-color, $alpha: 0.2);
+      color: $red-color;
     }
   }
 }
@@ -83,4 +87,9 @@
   h3 {
     font-weight: 500;
   }
+}
+
+.action_wrapper {
+  display: flex;
+  gap: 0.3rem;
 }

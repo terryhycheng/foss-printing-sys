@@ -6,7 +6,6 @@ import { Group } from "./UserGroups";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
 import Tooltip from "@mui/material/Tooltip";
 import UserGroupModal from "./UserGroupModal";

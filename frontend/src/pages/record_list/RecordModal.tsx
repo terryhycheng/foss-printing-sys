@@ -9,6 +9,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Group } from "../user_groups/UserGroups";
 import { InventoryDataType } from "../inventory/Inventory";
+import { recordType } from "./RecordList";
 
 const paperType = ["A1", "A2", "A3"];
 
@@ -17,6 +18,7 @@ type Props = {
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
   reload: boolean;
   setReload: React.Dispatch<React.SetStateAction<boolean>>;
+  row?: recordType;
 };
 
 const RecordModal: React.FC<Props> = ({
@@ -24,6 +26,7 @@ const RecordModal: React.FC<Props> = ({
   setIsModal,
   reload,
   setReload,
+  row,
 }) => {
   const handleClose = () => setIsModal(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,10 +50,11 @@ const RecordModal: React.FC<Props> = ({
   };
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     setIsLoading(true);
     try {
-      await axios.post(link, data);
+      row
+        ? await axios.patch(`${link}/${row.id}`, data)
+        : await axios.post(link, data);
     } catch (error) {
       console.error(error);
     }
@@ -68,13 +72,17 @@ const RecordModal: React.FC<Props> = ({
       aria-describedby="modal-modal-description"
     >
       <div className={classNames(styles.modal_container)}>
-        <h2>Add Print Record</h2>
+        <h2>{row ? "Edit Print Record" : "Add Print Record"}</h2>
         <form className={classNames()} onSubmit={handleSubmit(onSubmit)}>
           <div className={classNames(styles.select_box)}>
             <label htmlFor="date">Date</label>
             <input
               id="date"
-              defaultValue={moment().format("yyyy-MM-DD")}
+              defaultValue={
+                row
+                  ? moment(row.date).format("yyyy-MM-DD")
+                  : moment().format("yyyy-MM-DD")
+              }
               type="date"
               {...register("date", { required: true })}
             />
@@ -84,6 +92,7 @@ const RecordModal: React.FC<Props> = ({
             <input
               id="event"
               type="text"
+              defaultValue={row ? row.eventName : ""}
               {...register("eventName", { required: true })}
             />
           </div>
@@ -92,7 +101,7 @@ const RecordModal: React.FC<Props> = ({
               <label htmlFor="userGroup">User Group</label>
               <select
                 id="userGroup"
-                defaultValue=""
+                defaultValue={row ? row.userGroupId : ""}
                 className={classNames(styles.select_box)}
                 {...register("userGroupId", { required: true })}
               >
@@ -111,6 +120,7 @@ const RecordModal: React.FC<Props> = ({
               <input
                 id="requester"
                 type="text"
+                defaultValue={row ? row.requester : ""}
                 {...register("requester", { required: true })}
               />
             </div>
@@ -120,7 +130,7 @@ const RecordModal: React.FC<Props> = ({
               <label htmlFor="paperSize">Paper Size</label>
               <select
                 id="paperSize"
-                defaultValue=""
+                defaultValue={row ? row.size : "A2"}
                 className={classNames(styles.select_box)}
                 {...register("size", { required: true })}
               >
@@ -139,6 +149,7 @@ const RecordModal: React.FC<Props> = ({
               <input
                 id="qty"
                 type="number"
+                defaultValue={row ? row.quantity : ""}
                 step="0.5"
                 {...register("quantity", {
                   required: true,
@@ -151,7 +162,11 @@ const RecordModal: React.FC<Props> = ({
             <label htmlFor="paperType">Paper Type</label>
             <select
               id="paperType"
-              defaultValue=""
+              defaultValue={
+                row
+                  ? row.paperType
+                  : 'Satin Photographic Paper 200gsm, 24" x 100 ft, 2" Core'
+              }
               className={classNames(styles.select_box)}
               {...register("paperType", { required: true })}
             >
@@ -174,10 +189,17 @@ const RecordModal: React.FC<Props> = ({
               className={classNames(styles.btn, styles.submit, styles.loading)}
               type="submit"
             />
+          ) : row ? (
+            <input
+              className={classNames(styles.btn, styles.submit)}
+              type="submit"
+              value="Update record"
+            />
           ) : (
             <input
               className={classNames(styles.btn, styles.submit)}
               type="submit"
+              value="Add record"
             />
           )}
         </form>
