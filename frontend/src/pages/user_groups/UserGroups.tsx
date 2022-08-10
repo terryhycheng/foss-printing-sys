@@ -7,7 +7,6 @@ import AddIcon from "@mui/icons-material/Add";
 
 import UserGroupModal from "./UserGroupModal";
 import { UserBox } from "./UserBox";
-import { list } from "../../data/userGroups";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 

@@ -33,12 +33,6 @@ export const UserBox: FC<PropsType> = ({ row, reload, setReload }) => {
     await axios.delete(`${link}/${id}`);
     setReload(!reload);
   };
-  const onArchive = async (id: number) => {
-    await axios.patch(`${link}/${id}`, {
-      archive: true,
-    });
-    setReload(!reload);
-  };
 
   return (
     <>

@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 
 import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
 import { ContactInfoType } from "./ContactInfo";
-import { useState } from "react";
+import React, { useState } from "react";
 
 type Props = {
   isModal: boolean;

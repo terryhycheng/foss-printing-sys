@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
 import { Group } from "./UserGroups";
 import axios from "axios";
+import React from "react";
 
 type Props = {
   isModal: boolean;

@@ -97,10 +97,10 @@ function Dashboard() {
     const pie_label: any[] = [];
     const pie_data: any[] = [];
 
-    userGroupData.map((item) => {
+    userGroupData.forEach((item) => {
       projectTotal.push({ userGroup: item.slug, quantity: 0 });
     });
-    printData.map((item) => {
+    printData.forEach((item) => {
       projectTotal.forEach((project) => {
         if (item.userGroup === project.userGroup) {
           if (item.size === "A1") {
@@ -113,7 +113,7 @@ function Dashboard() {
         }
       });
     });
-    projectTotal.map((item) => {
+    projectTotal.forEach((item) => {
       pie_label.push(item.userGroup);
       pie_data.push(item.quantity);
       setPieData(pie_data);
@@ -136,7 +136,7 @@ function Dashboard() {
 
     // console.log(data);
 
-    data.map((item) => {
+    data.forEach((item) => {
       monthTotal.forEach((month) => {
         if (moment(item.date).format("MM YYYY") === month.time) {
           if (item.size === "A1") {

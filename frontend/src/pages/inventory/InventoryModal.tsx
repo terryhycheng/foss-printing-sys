@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 
 import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
 import { InventoryDataType } from "./Inventory";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 type Props = {
@@ -58,7 +58,7 @@ const InventoryModal: React.FC<Props> = ({
           <h3 className={classNames(styles.subtitle)}>Consumables</h3>
           <hr />
           <ListItem type="maintenance" register={register} data={data} />
-          <h3 className={classNames(styles.subtitle)}>Paper Roll (24")</h3>
+          <h3 className={classNames(styles.subtitle)}>Paper Roll (24&quot)</h3>
           <hr />
           <ListItem type="paper_roll" register={register} data={data} />
           <h3 className={classNames(styles.subtitle)}>
