@@ -22,7 +22,7 @@ const PrinterInfo = () => {
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<PrinterInfoType[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5000/printer";
+  const link = "http://localhost:5001/api/printer";
 
   useEffect(() => {
     fetchData();

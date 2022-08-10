@@ -5,10 +5,10 @@ import Modal from "@mui/material/Modal";
 
 import { useForm } from "react-hook-form";
 import moment from "moment";
-import { InventoryData } from "../../data/inventory";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Group } from "../user_groups/UserGroups";
+import { InventoryDataType } from "../inventory/Inventory";
 
 const paperType = ["A1", "A2", "A3"];
 
@@ -28,17 +28,22 @@ const RecordModal: React.FC<Props> = ({
   const handleClose = () => setIsModal(false);
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState<Group[]>([]);
+  const [inventoryData, setInventoryData] = useState<InventoryDataType[]>([]);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "http://localhost:5000/print";
+  const link = "http://localhost:5001/api/print";
 
   useEffect(() => {
     fetchUserGroup();
   }, []);
 
   const fetchUserGroup = async () => {
-    const data = await axios.get("http://localhost:5000/user_group");
+    const data = await axios.get("http://localhost:5001/api/usergroup");
+    const paperData = await axios.get(
+      "http://localhost:5001/api/inventory/paper_roll"
+    );
     setList(data.data);
+    setInventoryData(paperData.data);
   };
 
   const onSubmit = async (data: any) => {
@@ -89,13 +94,13 @@ const RecordModal: React.FC<Props> = ({
                 id="userGroup"
                 defaultValue=""
                 className={classNames(styles.select_box)}
-                {...register("userGroup", { required: true })}
+                {...register("userGroupId", { required: true })}
               >
                 <option disabled value="">
                   Please select
                 </option>
                 {list.map((option) => (
-                  <option key={option.id} value={option.slug}>
+                  <option key={option.id} value={option.id}>
                     {option.slug}
                   </option>
                 ))}
@@ -130,7 +135,7 @@ const RecordModal: React.FC<Props> = ({
               </select>
             </div>
             <div className={classNames(styles.select_box)}>
-              <label htmlFor="qty">Quantity</label>
+              <label htmlFor="quantity">Quantity</label>
               <input
                 id="qty"
                 type="number"
@@ -153,7 +158,7 @@ const RecordModal: React.FC<Props> = ({
               <option disabled value="">
                 Please select
               </option>
-              {InventoryData.map(
+              {inventoryData.map(
                 (option) =>
                   option.type === "paper_roll" && (
                     <option key={option.code} value={option.name}>

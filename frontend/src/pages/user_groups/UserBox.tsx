@@ -21,15 +21,9 @@ type PropsType = {
 export const UserBox: FC<PropsType> = ({ row, reload, setReload }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5000/user_group";
+  const link = "http://localhost:5001/api/usergroup";
 
-  const onUnarchive = async (id: number) => {
-    await axios.patch(`${link}/${id}`, {
-      archive: false,
-    });
-    setReload(!reload);
-  };
-  const onDelete = async (id: number) => {
+  const onDelete = async (id: string) => {
     await axios.delete(`${link}/${id}`);
     setReload(!reload);
   };
@@ -42,35 +36,22 @@ export const UserBox: FC<PropsType> = ({ row, reload, setReload }) => {
           <p>{row.FullName}</p>
         </div>
         <div className={classNames(styles.right)}>
-          {row.archive ? (
-            <Tooltip title="Unarchive">
-              <div
-                className={classNames(styles.icon_wrapper)}
-                onClick={() => onUnarchive(row.id)}
-              >
-                <UnarchiveIcon />
-              </div>
-            </Tooltip>
-          ) : (
-            <>
-              <Tooltip title="Edit">
-                <div
-                  className={classNames(styles.icon_wrapper)}
-                  onClick={handleOpen}
-                >
-                  <EditIcon />
-                </div>
-              </Tooltip>
-              <Tooltip title="Delete">
-                <div
-                  className={classNames(styles.icon_wrapper, styles.delete)}
-                  onClick={() => onDelete(row.id)}
-                >
-                  <DeleteOutlineIcon />
-                </div>
-              </Tooltip>
-            </>
-          )}
+          <Tooltip title="Edit">
+            <div
+              className={classNames(styles.icon_wrapper)}
+              onClick={handleOpen}
+            >
+              <EditIcon />
+            </div>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <div
+              className={classNames(styles.icon_wrapper, styles.delete)}
+              onClick={() => onDelete(row.id)}
+            >
+              <DeleteOutlineIcon />
+            </div>
+          </Tooltip>
         </div>
       </div>
       {isModal && (

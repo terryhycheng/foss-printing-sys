@@ -27,7 +27,7 @@ const PrinterModal: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "http://localhost:5000/printer";
+  const link = "http://localhost:5001/api/printer";
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
@@ -40,7 +40,6 @@ const PrinterModal: React.FC<Props> = ({
         console.error(error);
       }
     }
-
     setReload(!reload);
     reset();
     handleClose();

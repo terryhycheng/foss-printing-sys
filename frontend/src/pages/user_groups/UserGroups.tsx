@@ -11,7 +11,7 @@ import axios from "axios";
 import Loader from "../../components/loader/Loader";
 
 export type Group = {
-  id: number;
+  id: string;
   slug: string;
   FullName: string;
   archive: boolean;
@@ -31,7 +31,7 @@ const UserGroups: FC = () => {
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<Group[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5000/user_group";
+  const link = "http://localhost:5001/api/usergroup";
 
   useEffect(() => {
     fetchData();

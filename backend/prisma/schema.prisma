@@ -11,5 +11,44 @@ datasource db {
 }
 
 model printRecord {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId 
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime
+  eventName   String
+  userGroup   userGroup @relation(fields: [userGroupId], references: [id])
+  userGroupId String    @db.ObjectId
+  quantity    Int
+  size        String
+  requester   String
+  paperType   String
+}
+
+model contact {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  type    String
+  title   String
+  content String
+  link    String?
+}
+
+model inventory {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  type     String
+  name     String
+  code     String
+  quantity Int
+}
+
+model userGroup {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String
+  FullName    String
+  PrintRecord printRecord[]
+}
+
+model printer {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  type    String
+  title   String
+  content String
+  link    String?
 }

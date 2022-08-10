@@ -80,10 +80,12 @@ function Dashboard() {
   const fetchData = async () => {
     try {
       const userGroup_data = await axios.get(
-        "http://localhost:5000/user_group"
+        "http://localhost:5001/api/usergroup"
       );
-      const print_data = await axios.get("http://localhost:5000/print");
-      const inventory_data = await axios.get("http://localhost:5000/inventory");
+      const print_data = await axios.get("http://localhost:5001/api/print");
+      const inventory_data = await axios.get(
+        "http://localhost:5001/api/inventory"
+      );
       projectData(print_data.data, userGroup_data.data);
       monthData(print_data.data);
       calQty(inventory_data.data);
@@ -98,11 +100,15 @@ function Dashboard() {
     const pie_data: any[] = [];
 
     userGroupData.forEach((item) => {
-      projectTotal.push({ userGroup: item.slug, quantity: 0 });
+      projectTotal.push({
+        userGroupId: item.id,
+        userGroup: item.slug,
+        quantity: 0,
+      });
     });
     printData.forEach((item) => {
       projectTotal.forEach((project) => {
-        if (item.userGroup === project.userGroup) {
+        if (item.userGroupId === project.userGroupId) {
           if (item.size === "A1") {
             project.quantity += item.quantity * 2;
           } else if (item.size === "A3") {
@@ -168,13 +174,13 @@ function Dashboard() {
     for (let item of data) {
       switch (item.type) {
         case "maintenance":
-          count[0] += item.qty;
+          count[0] += item.quantity;
           break;
         case "paper_roll":
-          count[1] += item.qty;
+          count[1] += item.quantity;
           break;
         case "ink_box":
-          count[2] += item.qty;
+          count[2] += item.quantity;
           break;
         default:
           break;

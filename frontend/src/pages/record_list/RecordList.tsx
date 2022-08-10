@@ -10,12 +10,14 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import moment from "moment";
+import { Group } from "../user_groups/UserGroups";
 
 export type recordType = {
-  id: number;
+  id: string;
   date: string;
   eventName: string;
-  userGroup: string;
+  userGroupId: string;
+  userGroup?: string;
   quantity: number;
   size: string;
   requester: string;
@@ -26,10 +28,11 @@ const RecordList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<recordType[]>([]);
+  const [userGroupData, setUserGroupData] = useState<Group[]>([]);
   const [projectFilter, setProjectFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5000/print";
+  const link = "http://localhost:5001/api";
 
   useEffect(() => {
     fetchData();
@@ -38,7 +41,9 @@ const RecordList = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(link);
+      const res = await axios.get(`${link}/print`);
+      const userGroupRes = await axios.get(`${link}/usergroup`);
+      setUserGroupData(userGroupRes.data);
       setData(res.data);
       setIsLoading(false);
     } catch (error) {
@@ -46,10 +51,18 @@ const RecordList = () => {
     }
   };
 
-  const onDelete = async (id: Number) => {
-    await axios.delete(`${link}/${id}`);
+  const onDelete = async (id: string) => {
+    await axios.delete(`${link}/print/${id}`);
     setReload(!reload);
   };
+
+  data.map((item: recordType) => {
+    userGroupData.forEach((group) => {
+      if (item.userGroupId === group.id) {
+        item.userGroup = group.slug;
+      }
+    });
+  });
 
   return (
     <Layout>
@@ -129,7 +142,7 @@ const RecordList = () => {
                       key={row.id}
                       className={classNames(styles.grid, styles.row)}
                     >
-                      <p>{row.date}</p>
+                      <p>{moment(row.date).format("Do MMM YYYY")}</p>
                       <p>{row.eventName}</p>
                       <p>{row.userGroup}</p>
                       <p>{row.quantity}</p>

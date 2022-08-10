@@ -17,7 +17,7 @@ export type InventoryDataType = {
   type: string;
   name: string;
   code: string;
-  qty: number;
+  quantity: number;
 };
 
 // Main FC
@@ -28,7 +28,7 @@ const Inventory = () => {
   const [qtyCount, setQtyCount] = useState([0, 0, 0]);
   const [data, setData] = useState<InventoryDataType[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5000/inventory";
+  const link = "http://localhost:5001/api/inventory";
 
   // Calculate quantity function
   const calQty = (data: InventoryDataType[]) => {
@@ -36,13 +36,13 @@ const Inventory = () => {
     for (let item of data) {
       switch (item.type) {
         case "maintenance":
-          count[0] += item.qty;
+          count[0] += item.quantity;
           break;
         case "paper_roll":
-          count[1] += item.qty;
+          count[1] += item.quantity;
           break;
         case "ink_box":
-          count[2] += item.qty;
+          count[2] += item.quantity;
           break;
         default:
           break;
@@ -165,7 +165,7 @@ const Item = (props: { type: String; data: InventoryDataType[] }) => {
           item.type === props.type && (
             <div key={item.code as React.Key}>
               {/* Qty Checking */}
-              {item.qty ? (
+              {item.quantity ? (
                 <div
                   key={item.code as React.Key}
                   className={classNames(styles.row)}
@@ -173,7 +173,7 @@ const Item = (props: { type: String; data: InventoryDataType[] }) => {
                   <p className={styles.title}>{item.name}</p>
                   <p>{item.code}</p>
                   <p className={styles.number}>
-                    {`${item.qty}` ? `${item.qty}` : `-`}
+                    {`${item.quantity}` ? `${item.quantity}` : `-`}
                   </p>
                 </div>
               ) : (

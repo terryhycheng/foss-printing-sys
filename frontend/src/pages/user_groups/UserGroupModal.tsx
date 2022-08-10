@@ -26,13 +26,12 @@ const UserGroupModal: React.FC<Props> = ({
   const handleClose = () => setIsModal(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "http://localhost:5000/user_group";
+  const link = "http://localhost:5001/api/usergroup";
 
   const onSubmit = async (data: any) => {
     row
       ? await axios.patch(`${link}/${row.id}`, data)
       : await axios.post(`${link}`, {
-          id: Math.round(Math.random() * 1000),
           FullName: data.FullName,
           slug: data.slug,
         });

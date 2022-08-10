@@ -23,7 +23,7 @@ const ContactInfo = () => {
   const [data, setData] = useState<ContactInfoType[]>([]);
   const handleOpen = () => setIsModal(true);
 
-  const link = "http://localhost:5000/contact";
+  const link = "http://localhost:5001/api/contact";
 
   useEffect(() => {
     fetchData();

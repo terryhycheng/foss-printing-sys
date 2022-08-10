@@ -27,14 +27,14 @@ const InventoryModal: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "http://localhost:5000/inventory";
+  const link = "http://localhost:5001/api/inventory";
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     for (let id of Object.keys(data)) {
       try {
         await axios.patch(`${link}/${id}`, {
-          qty: parseInt(data[id]),
+          quantity: parseInt(data[id]),
         });
       } catch (error) {
         console.error(error);
@@ -102,7 +102,7 @@ const ListItem = (props: {
               <input
                 id="ugl"
                 type="number"
-                defaultValue={data.qty}
+                defaultValue={data.quantity}
                 {...props.register(`${data.id}`, { required: true })}
               />
             </div>

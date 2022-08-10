@@ -5,91 +5,91 @@
       "type": "maintenance",
       "name": "Maintenance Cartridge MC-10",
       "code": "1320B014BA",
-      "qty": 0
+      "quantity": 0
     },
     {
       "id": 547,
       "type": "maintenance",
       "name": "Print head PF-04",
       "code": "3630B001AA",
-      "qty": 2
+      "quantity": 2
     },
     {
       "id": 533,
       "type": "paper_roll",
       "name": "24lb Bond Paper 24\" x150 ft. 90 gsm",
       "code": "3873V022",
-      "qty": 0
+      "quantity": 0
     },
     {
       "id": 312,
       "type": "paper_roll",
       "name": "Canon Matte Coated Paper 170gsm, 24\" x100', 2\" Core ",
       "code": "0849V349",
-      "qty": 0
+      "quantity": 0
     },
     {
       "id": 318,
       "type": "paper_roll",
       "name": "Satin Photographic Paper 200gsm, 24\" x 100 ft, 2\" Core",
       "code": "2047V135",
-      "qty": 1
+      "quantity": 1
     },
     {
       "id": 183,
       "type": "paper_roll",
       "name": "Satin Photographic Paper 240gsm, 24\" x 100 ft, 3\" Core",
       "code": "2047V128",
-      "qty": 0
+      "quantity": 0
     },
     {
       "id": 518,
       "type": "paper_roll",
       "name": "Glossy Photographic Paper 200gsm 24\" x 100 ft, 2\" Core",
       "code": "2047V140",
-      "qty": 1
+      "quantity": 1
     },
     {
       "id": 871,
       "type": "paper_roll",
       "name": "Glossy Photographic Paper 240gsm 24\" x 100 ft, 3\" Core",
       "code": "2047V145",
-      "qty": 0
+      "quantity": 0
     },
     {
       "id": 461,
       "type": "ink_box",
       "name": "MBK - Ink Tank PFI-8107MBK",
       "code": "6709B001AA",
-      "qty": 1
+      "quantity": 1
     },
     {
       "id": 214,
       "type": "ink_box",
       "name": "BK - Ink Tank PFI-8107BK",
       "code": "6711B001AA",
-      "qty": 1
+      "quantity": 1
     },
     {
       "id": 208,
       "type": "ink_box",
       "name": "C - Ink Tank PFI-8107C",
       "code": "6712B001AA",
-      "qty": 1
+      "quantity": 1
     },
     {
       "id": 745,
       "type": "ink_box",
       "name": "M - Ink Tank PFI-8107M",
       "code": "6713B001AA",
-      "qty": 2
+      "quantity": 2
     },
     {
       "id": 206,
       "type": "ink_box",
       "name": "Y - Ink Tank PFI-8107Y",
       "code": "6714B001AA",
-      "qty": 2
+      "quantity": 2
     }
   ],
   "contact": [
