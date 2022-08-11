@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import styles from "./Menu.module.scss";
-import { Link } from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
@@ -8,55 +7,41 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import InboxIcon from "@mui/icons-material/Inbox";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MenuItem from "./MenuItem";
 
 const Menu = () => {
   return (
     <nav className={classNames(styles.container)}>
       <h1>FOSS Printing System</h1>
-      {/* ------------------------------------------------------------ */}
       <ul>
-        <Link to={"/"}>
-          <li>
-            <HomeIcon />
-            Dashboard
-          </li>
-        </Link>
+        <MenuItem title="Dashboard" icon={<HomeIcon />} link="/" />
         {/* ------------------------------------------------------------ */}
         <h4 className={styles.title}>Print records</h4>
-        <Link to={"/print"}>
-          <li>
-            <FormatListBulletedIcon />
-            Record List
-          </li>
-        </Link>
-        <Link to={"/usergroups"}>
-          <li>
-            <PeopleOutlineIcon />
-            User Groups
-          </li>
-        </Link>
+        <MenuItem
+          title="Record List"
+          icon={<FormatListBulletedIcon />}
+          link="/print"
+        />
+        <MenuItem
+          title="User Groups"
+          icon={<PeopleOutlineIcon />}
+          link="/usergroups"
+        />
         {/* ------------------------------------------------------------ */}
-        <h4 className={styles.title}>Consumables</h4>
-        <Link to={"/inventory"}>
-          <li>
-            <InboxIcon />
-            Inventory
-          </li>
-        </Link>
+        <h4 className={styles.title}>Inventory</h4>
+        <MenuItem title="Inventory" icon={<InboxIcon />} link="/inventory" />
         {/* ------------------------------------------------------------ */}
-        <h4 className={styles.title}>Print records</h4>
-        <Link to={"/printer-info"}>
-          <li>
-            <LocalPrintshopIcon />
-            Printer Info
-          </li>
-        </Link>
-        <Link to={"/contact"}>
-          <li>
-            <MailOutlineIcon />
-            Contact Info
-          </li>
-        </Link>
+        <h4 className={styles.title}>Important Info</h4>
+        <MenuItem
+          title="Printer Info"
+          icon={<LocalPrintshopIcon />}
+          link="/printer-info"
+        />
+        <MenuItem
+          title="Contact Info"
+          icon={<MailOutlineIcon />}
+          link="/contact"
+        />
       </ul>
     </nav>
   );

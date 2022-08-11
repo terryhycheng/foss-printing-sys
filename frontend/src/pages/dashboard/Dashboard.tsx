@@ -55,7 +55,6 @@ function Dashboard() {
   useEffect(() => {
     setIsLoading(true);
     fetchData();
-    setIsLoading(false);
   }, []);
 
   let monthsRequired = 12;
@@ -89,6 +88,7 @@ function Dashboard() {
       projectData(print_data.data, userGroup_data.data);
       monthData(print_data.data);
       calQty(inventory_data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }

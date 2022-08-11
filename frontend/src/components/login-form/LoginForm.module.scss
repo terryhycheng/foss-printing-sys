@@ -6,6 +6,7 @@
   gap: 1rem;
 
   .center {
+    padding: 0.5rem 0;
     text-align: center;
   }
 
@@ -44,4 +45,11 @@
       text-align: center;
     }
   }
+}
+
+.warning_box {
+  background-color: rgba($color: $red-color, $alpha: 0.15);
+  padding: 1rem;
+  color: $red-color;
+  border-radius: 5px;
 }

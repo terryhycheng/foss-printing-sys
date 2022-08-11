@@ -1,14 +1,18 @@
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import axios from "axios";
+import { useState } from "react";
 
 const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm();
-  // const navigate = useNavigate();
+  const [isWarning, setIsWarning] = useState(false);
+  const navigate = useNavigate();
   const link = "http://localhost:5001/api/auth";
+
+  const onChangeHandler = () => setIsWarning(false);
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -16,10 +20,9 @@ const LoginForm = () => {
       const res = await axios.post(link, data);
       console.log(res.data);
       // localStorage
-      // navigate("/");
+      navigate("/");
     } catch (error) {
-      // error message -> true
-      console.log(error);
+      setIsWarning(true);
     }
     reset();
   };
@@ -39,6 +42,7 @@ const LoginForm = () => {
           label="Email"
           variant="outlined"
           type="email"
+          onFocus={onChangeHandler}
           {...register("email", { required: true })}
         />
         <TextField
@@ -47,13 +51,19 @@ const LoginForm = () => {
           label="Password"
           variant="outlined"
           type="password"
+          onFocus={onChangeHandler}
           {...register("password", { required: true })}
         />
+        {isWarning && (
+          <div className={classNames(styles.warning_box)}>
+            Invalid login credentials. Please try again.
+          </div>
+        )}
         <button className={classNames(styles.btn)}>Login</button>
       </form>
-      <Link className={classNames(styles.center)} to={"/auth/reset"}>
-        Forgot password?
-      </Link>
+      <div className={classNames(styles.center)}>
+        <Link to={"/auth/reset"}>Forgot password?</Link>
+      </div>
       <p className={classNames(styles.center)}>
         If you need an account, please contact IT team.
       </p>
