@@ -34,18 +34,16 @@ const RecordModal: React.FC<Props> = ({
   const [inventoryData, setInventoryData] = useState<InventoryDataType[]>([]);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/print";
+  const link = "http://terryhycheng.com:8088/api/print";
 
   useEffect(() => {
     fetchUserGroup();
   }, []);
 
   const fetchUserGroup = async () => {
-    const data = await axios.get(
-      "https://desolate-retreat-50772.herokuapp.com/api/usergroup"
-    );
+    const data = await axios.get("http://terryhycheng.com:8088/api/usergroup");
     const paperData = await axios.get(
-      "https://desolate-retreat-50772.herokuapp.com/api/inventory/paper_roll"
+      "http://terryhycheng.com:8088/api/inventory/paper_roll"
     );
     setList(data.data);
     setInventoryData(paperData.data);

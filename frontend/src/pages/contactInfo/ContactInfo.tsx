@@ -27,7 +27,7 @@ const ContactInfo = () => {
 
   const navigate = useNavigate();
 
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/contact";
+  const link = "http://terryhycheng.com:8088/api/contact";
 
   useEffect(() => {
     authCheck(navigate);

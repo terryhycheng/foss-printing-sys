@@ -20,7 +20,7 @@ type PropsType = {
 export const UserBox: FC<PropsType> = ({ row, reload, setReload }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const handleOpen = () => setIsModal(true);
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/usergroup";
+  const link = "http://terryhycheng.com:8088/api/usergroup";
 
   const onDelete = async (id: string) => {
     await axios.delete(`${link}/${id}`);

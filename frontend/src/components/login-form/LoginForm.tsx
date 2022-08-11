@@ -14,7 +14,7 @@ const LoginForm = ({
   const { register, handleSubmit, reset } = useForm();
   const [isWarning, setIsWarning] = useState(false);
   const navigate = useNavigate();
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/auth";
+  const link = "http://terryhycheng.com:8088/api/auth";
 
   const onChangeHandler = () => setIsWarning(false);
 

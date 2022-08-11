@@ -15,10 +15,7 @@ const ResetPwForm = ({
 
   const onSubmit = async (data: any) => {
     console.log(data);
-    await axios.post(
-      "https://desolate-retreat-50772.herokuapp.com/api/reset",
-      data
-    );
+    await axios.post("http://terryhycheng.com:8088/api/reset", data);
     reset();
     setIsSuccessful(true);
   };
