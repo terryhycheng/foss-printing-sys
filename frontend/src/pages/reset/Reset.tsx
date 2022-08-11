@@ -20,7 +20,7 @@ const Reset = () => {
   const [isWarning, setIsWarning] = useState<boolean>(false);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const link = "http://localhost:5001/api/reset";
+  const link = "https://desolate-retreat-50772.herokuapp.com/api/reset";
 
   useEffect(() => {
     setIsLoading(true);
@@ -83,7 +83,7 @@ const Reset = () => {
             />
             {isWarning && (
               <div className={classNames(styles.warning_box)}>
-                Re-password doesn't match with password.
+                Re-password doesn&apos;t match with password.
               </div>
             )}
             <button className={classNames(styles.btn)}>Reset Password</button>

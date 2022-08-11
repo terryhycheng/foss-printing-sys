@@ -25,7 +25,7 @@ const PrinterInfo = () => {
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<PrinterInfoType[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5001/api/printer";
+  const link = "https://desolate-retreat-50772.herokuapp.com/api/printer";
 
   const navigate = useNavigate();
 

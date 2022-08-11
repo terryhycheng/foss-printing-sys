@@ -1,7 +1,7 @@
 import styles from "./Login.module.scss";
 import logo from "../../assets/logo.png";
 import LoginForm from "../../components/login-form/LoginForm";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ResetPwForm from "../../components/reset-password-form/ResetPwForm";
 import classNames from "classnames";
 import { useEffect, useState } from "react";

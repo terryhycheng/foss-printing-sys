@@ -11,6 +11,8 @@ import Loader from "../../components/loader/Loader";
 import moment from "moment";
 import { Group } from "../user_groups/UserGroups";
 import RecordRow from "./RecordRow";
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
 
 export type recordType = {
   id: string;
@@ -23,8 +25,6 @@ export type recordType = {
   size: string;
   requester: string;
 };
-import { useNavigate } from "react-router-dom";
-import { authCheck } from "../../helpers/authCheck";
 
 const RecordList = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const RecordList = () => {
   const [projectFilter, setProjectFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
   const handleOpen = () => setIsModal(true);
-  const link = "http://localhost:5001/api";
+  const link = "https://desolate-retreat-50772.herokuapp.com/api";
 
   const navigate = useNavigate();
 

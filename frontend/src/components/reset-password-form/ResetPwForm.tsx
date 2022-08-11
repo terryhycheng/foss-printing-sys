@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import styles from "./ResetPwForm.module.scss";
 import classNames from "classnames";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const ResetPwForm = ({
@@ -15,7 +15,10 @@ const ResetPwForm = ({
 
   const onSubmit = async (data: any) => {
     console.log(data);
-    await axios.post("http://localhost:5001/api/reset", data);
+    await axios.post(
+      "https://desolate-retreat-50772.herokuapp.com/api/reset",
+      data
+    );
     reset();
     setIsSuccessful(true);
   };
