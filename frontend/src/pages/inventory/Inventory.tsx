@@ -11,6 +11,8 @@ import PrintIcon from "@mui/icons-material/Print";
 import InventoryModal from "./InventoryModal";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
 
 export type InventoryDataType = {
   id: number;
@@ -30,6 +32,7 @@ const Inventory = () => {
   const handleOpen = () => setIsModal(true);
   const link = "http://localhost:5001/api/inventory";
 
+  const navigate = useNavigate();
   // Calculate quantity function
   const calQty = (data: InventoryDataType[]) => {
     const count: number[] = [0, 0, 0];
@@ -52,6 +55,7 @@ const Inventory = () => {
   };
 
   useEffect(() => {
+    authCheck(navigate);
     fetchData();
   }, [reload]);
 

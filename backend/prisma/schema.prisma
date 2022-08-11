@@ -53,9 +53,15 @@ model printer {
   link    String?
 }
 
-model user{
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+model user {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String
   password  String
   createdAt DateTime @default(now())
+}
+
+model reset {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String
+  email  String
 }

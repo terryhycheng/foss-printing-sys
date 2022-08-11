@@ -9,6 +9,8 @@ import UserGroupModal from "./UserGroupModal";
 import { UserBox } from "./UserBox";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
 
 export type Group = {
   id: string;
@@ -33,7 +35,10 @@ const UserGroups: FC = () => {
   const handleOpen = () => setIsModal(true);
   const link = "http://localhost:5001/api/usergroup";
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    authCheck(navigate);
     fetchData();
   }, [reload]);
 

@@ -1,11 +1,20 @@
 import styles from "./Login.module.scss";
 import logo from "../../assets/logo.png";
 import LoginForm from "../../components/login-form/LoginForm";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import ResetPwForm from "../../components/reset-password-form/ResetPwForm";
 import classNames from "classnames";
+import { useEffect, useState } from "react";
+import { isLogInCheck } from "../../helpers/authCheck";
 
 function Login() {
+  const navigate = useNavigate();
+  const [isForget, setIsForget] = useState(false);
+
+  useEffect(() => {
+    isLogInCheck(navigate);
+  }, []);
+
   return (
     <div className={classNames(styles.flex, styles.container)}>
       <div className={classNames(styles.flex, styles.box, styles.light_shadow)}>
@@ -14,10 +23,11 @@ function Login() {
           <div className={classNames(styles.flex, styles.logo_box)}>
             <img src={logo} alt="foss logo" width="300px" />
           </div>
-          <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route path="/reset" element={<ResetPwForm />} />
-          </Routes>
+          {isForget ? (
+            <ResetPwForm setIsForget={setIsForget} />
+          ) : (
+            <LoginForm setIsForget={setIsForget} />
+          )}
         </div>
       </div>
       <p className={classNames(styles.copyright)}>

@@ -23,6 +23,8 @@ export type recordType = {
   size: string;
   requester: string;
 };
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
 
 const RecordList = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -35,10 +37,25 @@ const RecordList = () => {
   const handleOpen = () => setIsModal(true);
   const link = "http://localhost:5001/api";
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    authCheck(navigate);
     fetchData();
   }, [reload]);
 
+  // Calculate the years from 2021 and create a year list for filter
+  const yearList = (): number[] => {
+    const yearFrom: number = moment("2021").year();
+    const yearNow: number = moment().year();
+    const yearList = [];
+    for (let i = yearFrom; i <= yearNow; i++) {
+      yearList.push(i);
+    }
+    return yearList;
+  };
+
+  //Fetching data from User Group and Print Record
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -52,6 +69,7 @@ const RecordList = () => {
     }
   };
 
+  //Replace the User Group ID with User Group slug
   data.map((item: recordType) => {
     userGroupData.forEach((group) => {
       if (item.userGroupId === group.id) {
@@ -84,8 +102,11 @@ const RecordList = () => {
                 }}
               >
                 <option value="">All</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
+                {yearList().map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
               </select>
             </div>
             <div className={classNames(styles.select_box)}>

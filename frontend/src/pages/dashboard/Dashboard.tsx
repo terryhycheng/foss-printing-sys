@@ -23,6 +23,8 @@ import { Group } from "../user_groups/UserGroups";
 import { recordType } from "../record_list/RecordList";
 import Loader from "../../components/loader/Loader";
 import { InventoryDataType } from "../inventory/Inventory";
+import { authCheck } from "../../helpers/authCheck";
+import { useNavigate } from "react-router-dom";
 
 // import { useSelector, useDispatch } from "react-redux";
 // import { decrement, increment } from "../../contexts/slices/counterSlice";
@@ -52,8 +54,11 @@ function Dashboard() {
   // const count = useSelector((state: RootState) => state.counter.value);
   // const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
+    authCheck(navigate);
     fetchData();
   }, []);
 

@@ -6,7 +6,11 @@ import classNames from "classnames";
 import axios from "axios";
 import { useState } from "react";
 
-const LoginForm = () => {
+const LoginForm = ({
+  setIsForget,
+}: {
+  setIsForget: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { register, handleSubmit, reset } = useForm();
   const [isWarning, setIsWarning] = useState(false);
   const navigate = useNavigate();
@@ -15,11 +19,10 @@ const LoginForm = () => {
   const onChangeHandler = () => setIsWarning(false);
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       const res = await axios.post(link, data);
       console.log(res.data);
-      // localStorage
+      localStorage.setItem("token", res.data);
       navigate("/");
     } catch (error) {
       setIsWarning(true);
@@ -61,8 +64,11 @@ const LoginForm = () => {
         )}
         <button className={classNames(styles.btn)}>Login</button>
       </form>
-      <div className={classNames(styles.center)}>
-        <Link to={"/auth/reset"}>Forgot password?</Link>
+      <div
+        className={classNames(styles.center)}
+        onClick={() => setIsForget(true)}
+      >
+        <span>Forgot password?</span>
       </div>
       <p className={classNames(styles.center)}>
         If you need an account, please contact IT team.

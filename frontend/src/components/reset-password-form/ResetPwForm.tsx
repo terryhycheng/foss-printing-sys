@@ -1,25 +1,29 @@
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
 import styles from "./ResetPwForm.module.scss";
 import classNames from "classnames";
+import { useState } from "react";
+import axios from "axios";
 
-const ResetPwForm = () => {
+const ResetPwForm = ({
+  setIsForget,
+}: {
+  setIsForget: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { register, handleSubmit, reset } = useForm();
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
+    await axios.post("http://localhost:5001/api/reset", data);
     reset();
+    setIsSuccessful(true);
   };
   return (
     <div className={classNames(styles.flex, styles.container)}>
       <div className={classNames(styles.flex, styles.container)}>
         <h2>Reset Password</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-          repellat repellendus eveniet nam fuga, minus in, explicabo temporibus
-          mollitia ipsa accusamus numquam officia.
-        </p>
+        <p>Please enter your login email to reset your password.</p>
       </div>
       <form
         className={classNames(styles.flex)}
@@ -31,17 +35,23 @@ const ResetPwForm = () => {
           label="Email"
           variant="outlined"
           type="email"
-          {...register("reset-email", { required: true })}
+          {...register("email", { required: true })}
         />
+        {isSuccessful && (
+          <div className={classNames(styles.message_box)}>
+            A reset email has been successfully sent to your email. Please
+            check.
+          </div>
+        )}
         <button className={classNames(styles.btn)}>
           Request a reset email
         </button>
-        <Link
-          to={"/auth"}
+        <div
           className={classNames(styles.center, styles.btn_outline)}
+          onClick={() => setIsForget(false)}
         >
           Back
-        </Link>
+        </div>
       </form>
     </div>
   );

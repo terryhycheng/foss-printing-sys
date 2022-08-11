@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import ContactModal from "./ContactModal";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
 
 export type ContactInfoType = {
   id: number;
@@ -23,9 +25,12 @@ const ContactInfo = () => {
   const [data, setData] = useState<ContactInfoType[]>([]);
   const handleOpen = () => setIsModal(true);
 
+  const navigate = useNavigate();
+
   const link = "http://localhost:5001/api/contact";
 
   useEffect(() => {
+    authCheck(navigate);
     fetchData();
   }, [reload]);
 

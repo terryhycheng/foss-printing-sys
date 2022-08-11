@@ -15,10 +15,11 @@
     gap: 1rem;
   }
 
-  a {
+  span {
     margin-top: 0.5rem;
     color: $dark-blue;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   p {

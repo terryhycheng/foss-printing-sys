@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import PrinterModal from "./PrinterModal";
 
+import { useNavigate } from "react-router-dom";
+import { authCheck } from "../../helpers/authCheck";
+
 export type PrinterInfoType = {
   id: number;
   type: string;
@@ -24,7 +27,10 @@ const PrinterInfo = () => {
   const handleOpen = () => setIsModal(true);
   const link = "http://localhost:5001/api/printer";
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    authCheck(navigate);
     fetchData();
   }, [reload]);
 
