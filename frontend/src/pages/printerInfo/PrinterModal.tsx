@@ -27,7 +27,7 @@ const PrinterModal: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "http://terryhycheng.com:8088/api/printer";
+  const link = "https://desolate-retreat-50772.herokuapp.com/api/printer";
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);

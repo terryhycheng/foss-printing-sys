@@ -19,7 +19,7 @@ const RecordRow = ({ reload, setReload, row }: RecordRowType) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const handleOpen = () => setIsModal(true);
 
-  const link = "http://terryhycheng.com:8088/api";
+  const link = "https://desolate-retreat-50772.herokuapp.com/api";
 
   const onDelete = async (id: string) => {
     await axios.delete(`${link}/print/${id}`);
