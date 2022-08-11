@@ -26,3 +26,5 @@ printRecordRoutes(app);
 authRoutes(app);
 
 app.listen(port, () => console.log(`Server is runing on ${port}`));
+
+module.exports = app;
