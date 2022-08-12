@@ -13,16 +13,19 @@ const LoginForm = ({
 }) => {
   const { register, handleSubmit, reset } = useForm();
   const [isWarning, setIsWarning] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
   const navigate = useNavigate();
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/auth";
+  const link = `${process.env.REACT_APP_API}/api/auth`;
 
   const onChangeHandler = () => setIsWarning(false);
 
   const onSubmit = async (data: any) => {
     try {
+      console.log(link);
+      setIsSubmited(true);
       const res = await axios.post(link, data);
-      console.log(res.data);
       localStorage.setItem("token", res.data);
+      setIsSubmited(false);
       navigate("/");
     } catch (error) {
       setIsWarning(true);
@@ -62,8 +65,15 @@ const LoginForm = ({
             Invalid login credentials. Please try again.
           </div>
         )}
-        <button className={classNames(styles.btn)}>Login</button>
+        {!isSubmited && (
+          <button className={classNames(styles.btn)}>Login</button>
+        )}
       </form>
+      {isSubmited && (
+        <button className={classNames(styles.btn, styles.grey)}>
+          Loading...
+        </button>
+      )}
       <div
         className={classNames(styles.center)}
         onClick={() => setIsForget(true)}

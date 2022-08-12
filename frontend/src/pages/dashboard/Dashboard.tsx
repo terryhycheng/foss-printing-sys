@@ -84,13 +84,13 @@ function Dashboard() {
   const fetchData = async () => {
     try {
       const userGroup_data = await axios.get(
-        "https://desolate-retreat-50772.herokuapp.com/api/usergroup"
+        `${process.env.REACT_APP_API}/api/usergroup`
       );
       const print_data = await axios.get(
-        "https://desolate-retreat-50772.herokuapp.com/api/print"
+        `${process.env.REACT_APP_API}/api/print`
       );
       const inventory_data = await axios.get(
-        "https://desolate-retreat-50772.herokuapp.com/api/inventory"
+        `${process.env.REACT_APP_API}/api/inventory`
       );
       projectData(print_data.data, userGroup_data.data);
       monthData(print_data.data);

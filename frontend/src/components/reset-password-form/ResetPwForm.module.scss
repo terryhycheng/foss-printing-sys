@@ -17,3 +17,11 @@
   color: rgb(0, 166, 0);
   border-radius: 5px;
 }
+
+.grey {
+  background-color: gray;
+  cursor: initial;
+  &:hover {
+    background-color: gray;
+  }
+}

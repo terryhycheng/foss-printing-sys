@@ -122,7 +122,7 @@ const reset = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 from: "FOSS IT Printing System<fossit-print-sys@hotmail.com>",
                 to: email,
                 subject: "Reset Password For FOSS Printing System",
-                html: `<p>Please check the link below to reset your password.</p><b>http://localhost:3000/reset/${resetRecord.id}</b>`,
+                html: `<p>Please check the link below to reset your password.</p><b>https://foss-printing-sys.vercel.app/reset/${resetRecord.id}</b>`,
             });
             res.status(200).send({ messgae: `Reset email sent to ${user.email}.` });
         }

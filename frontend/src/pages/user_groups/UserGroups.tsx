@@ -33,7 +33,7 @@ const UserGroups: FC = () => {
   const [reload, setReload] = useState<boolean>(false);
   const [data, setData] = useState<Group[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/usergroup";
+  const link = `${process.env.REACT_APP_API}/api/usergroup`;
 
   const navigate = useNavigate();
 

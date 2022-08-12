@@ -54,3 +54,11 @@
   color: $red-color;
   border-radius: 5px;
 }
+
+.grey {
+  background-color: gray;
+  cursor: initial;
+  &:hover {
+    background-color: gray;
+  }
+}

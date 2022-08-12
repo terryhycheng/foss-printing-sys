@@ -35,7 +35,7 @@ const RecordList = () => {
   const [projectFilter, setProjectFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
   const handleOpen = () => setIsModal(true);
-  const link = "https://desolate-retreat-50772.herokuapp.com/api";
+  const link = `${process.env.REACT_APP_API}/api`;
 
   const navigate = useNavigate();
 

@@ -30,7 +30,7 @@ const Inventory = () => {
   const [qtyCount, setQtyCount] = useState([0, 0, 0]);
   const [data, setData] = useState<InventoryDataType[]>([]);
   const handleOpen = () => setIsModal(true);
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/inventory";
+  const link = `${process.env.REACT_APP_API}/api/inventory`;
 
   const navigate = useNavigate();
   // Calculate quantity function

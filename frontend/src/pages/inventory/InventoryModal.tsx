@@ -27,7 +27,7 @@ const InventoryModal: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/inventory";
+  const link = `${process.env.REACT_APP_API}/api/inventory`;
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);

@@ -26,7 +26,7 @@ const UserGroupModal: React.FC<Props> = ({
   const handleClose = () => setIsModal(false);
   const { register, handleSubmit, reset } = useForm();
 
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/usergroup";
+  const link = `${process.env.REACT_APP_API}/api/usergroup`;
 
   const onSubmit = async (data: any) => {
     row

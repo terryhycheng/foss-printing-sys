@@ -27,7 +27,7 @@ const ContactInfo = () => {
 
   const navigate = useNavigate();
 
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/contact";
+  const link = `${process.env.REACT_APP_API}/api/contact`;
 
   useEffect(() => {
     authCheck(navigate);

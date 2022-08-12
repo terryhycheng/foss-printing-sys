@@ -20,7 +20,7 @@ const Reset = () => {
   const [isWarning, setIsWarning] = useState<boolean>(false);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const link = "https://desolate-retreat-50772.herokuapp.com/api/reset";
+  const link = `${process.env.REACT_APP_API}/api/reset`;
 
   useEffect(() => {
     setIsLoading(true);
