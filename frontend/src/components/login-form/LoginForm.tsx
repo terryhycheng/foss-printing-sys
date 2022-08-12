@@ -21,7 +21,6 @@ const LoginForm = ({
 
   const onSubmit = async (data: any) => {
     try {
-      console.log(link);
       setIsSubmited(true);
       const res = await axios.post(link, data);
       localStorage.setItem("token", res.data);
@@ -74,12 +73,12 @@ const LoginForm = ({
           Loading...
         </button>
       )}
-      <div
+      {/* <div
         className={classNames(styles.center)}
         onClick={() => setIsForget(true)}
       >
         <span>Forgot password?</span>
-      </div>
+      </div> */}
       <p className={classNames(styles.center)}>
         If you need an account, please contact IT team.
       </p>

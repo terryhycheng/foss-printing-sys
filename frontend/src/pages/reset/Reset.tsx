@@ -25,13 +25,13 @@ const Reset = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchData();
-    setIsLoading(false);
   }, []);
 
   const fetchData = async () => {
     const res = await axios.get(`${link}/${id}`);
     if (res.data) {
       setResetData(res.data);
+      setIsLoading(false);
     } else {
       navigate("/error");
     }

@@ -90,6 +90,19 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 password: hash,
             },
         });
+        let transporter = nodemailer_1.default.createTransport({
+            service: "hotmail",
+            auth: {
+                user: "fossit-print-sys@hotmail.com",
+                pass: "FOSSIT1fossit",
+            },
+        });
+        let info = yield transporter.sendMail({
+            from: "FOSS IT Printing System<fossit-print-sys@hotmail.com>",
+            to: email,
+            subject: "A New Account For FOSS Printing System",
+            html: `<p>Here are your login details.</p><br/><p>Email:<b>${email}</b></p><br/><p>Password:<b>${password}</b></p>`,
+        });
         res.status(200).send(newUser);
     }
     catch (error) {

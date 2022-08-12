@@ -16,7 +16,6 @@ const ResetPwForm = ({
 
   const onSubmit = async (data: any) => {
     setIsSubmited(true);
-    console.log(`${process.env.REACT_APP_API}/api/reset`);
     await axios.post(`${process.env.REACT_APP_API}/api/reset`, data);
     reset();
     setIsSuccessful(true);

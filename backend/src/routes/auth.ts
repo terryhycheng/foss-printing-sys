@@ -57,6 +57,25 @@ const register = async (req: Request, res: Response) => {
         password: hash,
       },
     });
+    let transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: "fossit-print-sys@hotmail.com",
+        pass: "FOSSIT1fossit",
+      },
+    });
+
+    let info = await transporter.sendMail({
+      from: "FOSS IT Printing System<fossit-print-sys@hotmail.com>",
+      to: email,
+      subject: "A New Account For FOSS Printing System",
+      html: `<p>Here are your login details for FOSS Printing System.</p>
+            <p>System link: <b>https://foss-printing-sys.vercel.app/</b>
+            <br/>
+            <p>Email:<b>${email}</b></p>
+            <p>Password:<b>${password}</b></p>
+            `,
+    });
     res.status(200).send(newUser);
   } catch (error) {
     res.status(400).send({ message: error });
